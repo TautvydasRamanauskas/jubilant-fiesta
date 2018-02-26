@@ -2,7 +2,11 @@ import {applyMiddleware, compose, createStore} from 'redux';
 import thunk from 'redux-thunk';
 import rootReducer from './reducers/';
 
-const initialState = {};
+const initialState = {
+    search: {
+        text: ""
+    }
+};
 
 const enhancers = compose(
     applyMiddleware(thunk),
