@@ -32,6 +32,17 @@
     height: 25px;
 }
 
+.search-results {
+    padding-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+}
+
+.search-results td {
+    padding: 5px 10px;
+}
+
 @keyframes App-logo-spin {
     from {
         transform: rotate(0deg);

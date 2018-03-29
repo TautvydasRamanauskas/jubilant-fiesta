@@ -7,7 +7,7 @@ import * as actions from './actions/search-actions';
 
 class App extends Component {
     render() {
-        const {searchText, changeSearchText, search} = this.props;
+        const {searchText, changeSearchText, search, results} = this.props;
         return (
             <div className="App">
                 <header className="App-header">
@@ -17,6 +17,7 @@ class App extends Component {
                 <div className="App-intro">
                     <SearchField text={searchText} onChange={changeSearchText}/>
                     <SearchButton onClick={() => search(searchText)}/>
+                    <Results results={results}/>
                 </div>
             </div>
         );
@@ -45,7 +46,28 @@ const SearchButton = ({onClick}) => (
     </div>
 );
 
-const mapStateToProps = state => ({searchText: state.search.text});
+const Results = ({results}) => (
+    <table className="search-results">
+        {results.map(r => <Result result={r}/>)}
+    </table>
+);
+
+const Result = ({result}) => (
+    <tr>
+        <td>
+            {result.result}
+        </td>
+        <td>
+            Count: {result.count}
+        </td>
+    </tr>
+);
+
+
+const mapStateToProps = state => ({
+    searchText: state.search.text,
+    results: state.search.results,
+});
 
 const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
 

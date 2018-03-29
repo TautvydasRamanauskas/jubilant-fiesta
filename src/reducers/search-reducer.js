@@ -3,12 +3,13 @@ export default (state = {}, action) => {
         case 'SEARCH_TEXT_CHANGE':
             return {
                 ...state,
-                text: action.newText
+                text: action.newText,
             };
         case 'SEARCH':
             console.log(action.keyword);
             return {
-                ...state
+                ...state,
+                results: action.results,
             };
         default:
             return state;
