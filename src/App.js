@@ -7,8 +7,20 @@ import * as actions from './actions/search-actions';
 
 class App extends Component {
     render() {
-        const {searchText, results, link} = this.props;
-        const {changeSearchText, changeBookmark, search, bookmarks, links, changeLink} = this.props;
+        const {
+            searchText,
+            results,
+            generatedLink,
+            link,
+            changeSearchText,
+            changeBookmark,
+            search,
+            bookmarks,
+            links,
+            changeLink,
+            generateLink,
+        } = this.props;
+
         return (
             <div className="App">
                 <header className="App-header">
@@ -19,8 +31,17 @@ class App extends Component {
                     <SearchField text={searchText} onChange={changeSearchText}/>
                     <Button text="Search" onClick={() => search(searchText)}/>
                     <Button text="Bookmarks" onClick={() => bookmarks()}/>
-                    <Results results={results} onBookmarkClick={changeBookmark}/>
-                    <Link text={link} onClick={() => links(link)} onChange={changeLink}/>
+                    {results.length > 0 && <Results
+                        results={results}
+                        onBookmarkClick={changeBookmark}
+                        onGenerateLink={() => generateLink(results)}
+                        generatedLink={generatedLink}
+                    />}
+                    <Link
+                        text={link}
+                        onClick={() => links(link)}
+                        onChange={changeLink}
+                    />
                 </div>
             </div>
         );
@@ -49,12 +70,19 @@ const Button = ({text, onClick}) => (
     </div>
 );
 
-const Results = ({results, onBookmarkClick}) => (
-    <table className="search-results">
-        <tbody>
-        {results.map(r => <Result key={r.id} result={r} onBookmarkClick={onBookmarkClick}/>)}
-        </tbody>
-    </table>
+const Results = ({results, onBookmarkClick, onGenerateLink, generatedLink}) => (
+    <div className="search-results">
+        <table>
+            <tbody>
+            {results.map(r => <Result key={r.id} result={r} onBookmarkClick={onBookmarkClick}/>)}
+            </tbody>
+        </table>
+        {
+            generatedLink ?
+                <input type="text" disabled="true" size="38" value={generatedLink}/> :
+                <button onClick={e => onGenerateLink()}>Generate Link</button>
+        }
+    </div>
 );
 
 const Result = ({result, onBookmarkClick}) => {
@@ -90,6 +118,7 @@ const mapStateToProps = state => ({
     searchText: state.search.text,
     results: state.search.results,
     link: state.search.link,
+    generatedLink: state.search.generatedLink,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);

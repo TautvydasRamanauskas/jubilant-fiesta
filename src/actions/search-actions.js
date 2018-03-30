@@ -57,6 +57,23 @@ export const bookmarks = () => dispatch => {
         })
 };
 
+export const generateLink = results => dispatch => {
+    SearchService.generatedLink(results)
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            }
+        })
+        .then(json => {
+            if (json) {
+                dispatch({
+                    type: 'LINK_GENERATE',
+                    generatedLink: json,
+                });
+            }
+        })
+};
+
 export const links = link => dispatch => {
     SearchService.link(link)
         .then(response => {

@@ -7,6 +7,7 @@ const initialState = {
         text: '',
         link: '',
         results: [],
+        generatedLink: '',
     }
 };
 

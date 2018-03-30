@@ -34,6 +34,11 @@ export default (state = {}, action) => {
                 ...state,
                 results: action.results,
             };
+        case 'LINK_GENERATE':
+            return {
+                ...state,
+                generatedLink: action.generatedLink,
+            };
         default:
             return state;
     }

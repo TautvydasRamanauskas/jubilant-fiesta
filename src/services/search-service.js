@@ -17,7 +17,11 @@ export default {
         return callApi(`/bookmark`, 'DELETE', {...entry});
     },
 
+    generatedLink(results) {
+        return callApi(`/link/`, 'POST', results);
+    },
+
     link(link) {
         return callApi(`/link/${link}`, 'GET');
-    }
+    },
 }

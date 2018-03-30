@@ -24,7 +24,7 @@
 
 .search-field {
     width: 500px;
-    margin: 20px;
+    margin: 25px;
 }
 
 .action-button {
@@ -34,6 +34,10 @@
 
 .search-results {
     padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.search-results table {
     margin-left: auto;
     margin-right: auto;
     text-align: left;
@@ -49,7 +53,7 @@
 
 .link-field {
     width: 250px;
-    margin: 10px;
+    margin: 25px 10px 10px;
 }
 
 @keyframes App-logo-spin {
