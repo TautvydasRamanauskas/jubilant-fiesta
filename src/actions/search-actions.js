@@ -5,11 +5,18 @@ export const changeSearchText = newText => ({
     newText,
 });
 
-export const changeBookmark = (title, bookmark) => ({
-    type: 'BOOKMARK_CHANGE',
-    title,
-    bookmark,
-});
+export const changeBookmark = (title, bookmark) => dispatch => {
+    const promise = bookmark ? SearchService.addBookmark(title) : SearchService.removeBookmark(title);
+    promise.then(response => {
+        if (response.ok) {
+            dispatch({
+                type: 'BOOKMARK_CHANGE',
+                title,
+                bookmark,
+            });
+        }
+    })
+};
 
 export const search = keyword => dispatch => {
     SearchService.search(keyword)
