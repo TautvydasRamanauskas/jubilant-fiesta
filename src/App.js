@@ -7,7 +7,7 @@ import * as actions from './actions/search-actions';
 
 class App extends Component {
     render() {
-        const {searchText, changeSearchText, search, results} = this.props;
+        const {searchText, changeSearchText, search, results, changeBookmark} = this.props;
         return (
             <div className="App">
                 <header className="App-header">
@@ -17,7 +17,7 @@ class App extends Component {
                 <div className="App-intro">
                     <SearchField text={searchText} onChange={changeSearchText}/>
                     <SearchButton onClick={() => search(searchText)}/>
-                    <Results results={results}/>
+                    <Results results={results} onBookmarkClick={changeBookmark}/>
                 </div>
             </div>
         );
@@ -46,23 +46,25 @@ const SearchButton = ({onClick}) => (
     </div>
 );
 
-const Results = ({results}) => (
+const Results = ({results, onBookmarkClick}) => (
     <table className="search-results">
-        {results.map(r => <Result result={r}/>)}
+        {results.map(r => <Result result={r} onBookmarkClick={onBookmarkClick}/>)}
     </table>
 );
 
-const Result = ({result}) => (
+const Result = ({result: {result: title, count, bookmark}, onBookmarkClick}) => (
     <tr>
         <td>
-            {result.result}
+            {title}
         </td>
         <td>
-            Count: {result.count}
+            Count: {count}
+        </td>
+        <td onClick={e => onBookmarkClick(title, !bookmark)}>
+            {bookmark ? '★' : '☆'}
         </td>
     </tr>
 );
-
 
 const mapStateToProps = state => ({
     searchText: state.search.text,

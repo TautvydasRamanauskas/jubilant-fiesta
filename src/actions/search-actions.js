@@ -5,6 +5,12 @@ export const changeSearchText = newText => ({
     newText,
 });
 
+export const changeBookmark = (title, bookmark) => ({
+    type: 'BOOKMARK_CHANGE',
+    title,
+    bookmark,
+});
+
 export const search = keyword => dispatch => {
     SearchService.search(keyword)
         .then(response => {
