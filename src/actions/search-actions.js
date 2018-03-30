@@ -5,6 +5,11 @@ export const changeSearchText = newText => ({
     newText,
 });
 
+export const changeLink = newLink => ({
+    type: 'LINK_CHANGE',
+    newLink,
+});
+
 export const changeBookmark = (entry) => dispatch => {
     const {bookmark} = entry;
     const promise = bookmark ? SearchService.removeBookmark(entry) : SearchService.addBookmark(entry);
@@ -38,6 +43,22 @@ export const search = keyword => dispatch => {
 
 export const bookmarks = () => dispatch => {
     SearchService.retrieveBookmarks()
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            }
+            return new Promise(() => []);
+        })
+        .then(json => {
+            dispatch({
+                type: 'RESULTS',
+                results: json,
+            });
+        })
+};
+
+export const links = link => dispatch => {
+    SearchService.link(link)
         .then(response => {
             if (response.ok) {
                 return response.json();

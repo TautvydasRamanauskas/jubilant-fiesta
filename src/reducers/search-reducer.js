@@ -5,6 +5,11 @@ export default (state = {}, action) => {
                 ...state,
                 text: action.newText,
             };
+        case 'LINK_CHANGE':
+            return {
+                ...state,
+                link: action.newLink,
+            };
         case 'BOOKMARK_CHANGE':
             const {results} = state;
             const {entry} = action;

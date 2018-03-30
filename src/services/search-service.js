@@ -16,4 +16,8 @@ export default {
     removeBookmark(entry) {
         return callApi(`/bookmark`, 'DELETE', {...entry});
     },
+
+    link(link) {
+        return callApi(`/link/${link}`, 'GET');
+    }
 }
