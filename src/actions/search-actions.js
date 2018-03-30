@@ -5,13 +5,14 @@ export const changeSearchText = newText => ({
     newText,
 });
 
-export const changeBookmark = (title, bookmark) => dispatch => {
-    const promise = bookmark ? SearchService.addBookmark(title) : SearchService.removeBookmark(title);
+export const changeBookmark = (entry) => dispatch => {
+    const {bookmark} = entry;
+    const promise = bookmark ? SearchService.removeBookmark(entry) : SearchService.addBookmark(entry);
     promise.then(response => {
         if (response.ok) {
             dispatch({
                 type: 'BOOKMARK_CHANGE',
-                title,
+                entry,
                 bookmark,
             });
         }
@@ -19,6 +20,7 @@ export const changeBookmark = (title, bookmark) => dispatch => {
 };
 
 export const search = keyword => dispatch => {
+    if (!keyword) return;
     SearchService.search(keyword)
         .then(response => {
             if (response.ok) {
@@ -28,7 +30,23 @@ export const search = keyword => dispatch => {
         })
         .then(json => {
             dispatch({
-                type: 'SEARCH',
+                type: 'RESULTS',
+                results: json,
+            });
+        })
+};
+
+export const bookmarks = () => dispatch => {
+    SearchService.retrieveBookmarks()
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            }
+            return new Promise(() => []);
+        })
+        .then(json => {
+            dispatch({
+                type: 'RESULTS',
                 results: json,
             });
         })

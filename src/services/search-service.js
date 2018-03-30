@@ -5,11 +5,15 @@ export default {
         return callApi(`/search/${keyword}`, 'POST');
     },
 
-    addBookmark(title) {
-        return callApi(`/bookmark`, 'POST', {title});
+    retrieveBookmarks() {
+        return callApi(`/bookmark`, 'GET');
     },
 
-    removeBookmark(title) {
-        return callApi(`/bookmark`, 'DELETE', {title});
+    addBookmark(entry) {
+        return callApi(`/bookmark`, 'POST', {...entry});
+    },
+
+    removeBookmark(entry) {
+        return callApi(`/bookmark`, 'DELETE', {...entry});
     },
 }

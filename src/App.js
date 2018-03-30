@@ -7,7 +7,8 @@ import * as actions from './actions/search-actions';
 
 class App extends Component {
     render() {
-        const {searchText, changeSearchText, search, results, changeBookmark} = this.props;
+        const {searchText, results} = this.props;
+        const {changeSearchText, changeBookmark, search, bookmarks} = this.props;
         return (
             <div className="App">
                 <header className="App-header">
@@ -16,7 +17,8 @@ class App extends Component {
                 </header>
                 <div className="App-intro">
                     <SearchField text={searchText} onChange={changeSearchText}/>
-                    <SearchButton onClick={() => search(searchText)}/>
+                    <Button text="Search" onClick={() => search(searchText)}/>
+                    <Button text="Bookmarks" onClick={() => bookmarks()}/>
                     <Results results={results} onBookmarkClick={changeBookmark}/>
                 </div>
             </div>
@@ -35,12 +37,12 @@ const SearchField = ({text, onChange}) => (
     </div>
 );
 
-const SearchButton = ({onClick}) => (
+const Button = ({text, onClick}) => (
     <div>
         <input
-            className="search-button"
+            className="action-button"
             type="button"
-            value="Search"
+            value={text}
             onClick={e => onClick()}
         />
     </div>
@@ -48,23 +50,28 @@ const SearchButton = ({onClick}) => (
 
 const Results = ({results, onBookmarkClick}) => (
     <table className="search-results">
-        {results.map(r => <Result result={r} onBookmarkClick={onBookmarkClick}/>)}
+        <tbody>
+        {results.map(r => <Result key={r.id} result={r} onBookmarkClick={onBookmarkClick}/>)}
+        </tbody>
     </table>
 );
 
-const Result = ({result: {result: title, count, bookmark}, onBookmarkClick}) => (
-    <tr>
-        <td>
-            {title}
-        </td>
-        <td>
-            Count: {count}
-        </td>
-        <td onClick={e => onBookmarkClick(title, !bookmark)}>
-            {bookmark ? '★' : '☆'}
-        </td>
-    </tr>
-);
+const Result = ({result, onBookmarkClick}) => {
+    return (
+        <tr>
+            <td>
+                {result.result}
+            </td>
+            <td>
+                Count: {result.count}
+            </td>
+            <td onClick={e => onBookmarkClick(result)}>
+                {result.bookmark ? '★' : '☆'}
+            </td>
+        </tr>
+    )
+};
+
 
 const mapStateToProps = state => ({
     searchText: state.search.text,

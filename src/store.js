@@ -4,7 +4,7 @@ import rootReducer from './reducers/';
 
 const initialState = {
     search: {
-        text: "",
+        text: '',
         results: [],
     }
 };

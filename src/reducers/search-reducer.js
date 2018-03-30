@@ -7,23 +7,24 @@ export default (state = {}, action) => {
             };
         case 'BOOKMARK_CHANGE':
             const {results} = state;
-            const bookmarkIndex = results.findIndex(r => r.result === action.title);
+            const {entry} = action;
+            const bookmarkIndex = results.findIndex(r => r === entry);
             if (bookmarkIndex === -1) {
                 return state;
             }
             return {
                 ...state,
+                text: '',
                 results: [
                     ...results.slice(0, bookmarkIndex),
                     {
                         ...results[bookmarkIndex],
-                        bookmark: action.bookmark,
+                        bookmark: !entry.bookmark,
                     },
                     ...results.slice(bookmarkIndex + 1),
                 ],
             };
-        case 'SEARCH':
-            console.log(action.keyword);
+        case 'RESULTS':
             return {
                 ...state,
                 results: action.results,
