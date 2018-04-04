@@ -25,6 +25,10 @@ export default {
         return callApi(`/vote/`, 'DELETE', vote);
     },
 
+    generateReport(results) {
+        return callApi(`/report/`, 'POST', results);
+    },
+
     generatedLink(results) {
         return callApi(`/link/`, 'POST', results);
     },

@@ -56,6 +56,10 @@
     margin: 25px 10px 10px;
 }
 
+.table-button {
+    width: 250px;
+}
+
 @keyframes App-logo-spin {
     from {
         transform: rotate(0deg);

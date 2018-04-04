@@ -21,6 +21,7 @@ class App extends Component {
             generateLink,
             addVote,
             removeVote,
+            generateReport,
         } = this.props;
 
         return (
@@ -38,6 +39,7 @@ class App extends Component {
                         onBookmarkClick={changeBookmark}
                         addVote={addVote}
                         removeVote={removeVote}
+                        onGenerateReport={() => generateReport(results)}
                         onGenerateLink={() => generateLink(results)}
                         generatedLink={generatedLink}
                     />}
@@ -75,7 +77,11 @@ const Button = ({text, onClick}) => (
     </div>
 );
 
-const Results = ({results, onBookmarkClick, addVote, removeVote, onGenerateLink, generatedLink}) => (
+const Results = ({
+                     results, onBookmarkClick, addVote,
+                     removeVote, onGenerateReport,
+                     onGenerateLink, generatedLink
+                 }) => (
     <div className="search-results">
         <table>
             <tbody>
@@ -90,11 +96,8 @@ const Results = ({results, onBookmarkClick, addVote, removeVote, onGenerateLink,
             )}
             </tbody>
         </table>
-        {
-            generatedLink ?
-                <input type="text" disabled="true" size="38" value={generatedLink}/> :
-                <button onClick={e => onGenerateLink()}>Generate Link</button>
-        }
+        <LinkGenerate link={generatedLink} onGenerateLink={onGenerateLink}/>
+        <button className="table-button" onClick={e => onGenerateReport()}>Generate Report</button>
     </div>
 );
 
@@ -135,6 +138,16 @@ const Vote = ({title, personalVote, addVote, removeVote}) => {
             ]);
     }
 };
+
+const LinkGenerate = ({link, onGenerateLink}) => (
+    <div>
+        {
+            link ?
+                <input className="table-button" type="text" disabled="true" value={link}/> :
+                <button className="table-button" onClick={e => onGenerateLink()}>Generate Link</button>
+        }
+    </div>
+);
 
 const Link = ({text, onClick, onChange}) => (
     <div>

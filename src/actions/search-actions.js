@@ -1,4 +1,5 @@
 import SearchService from '../services/search-service';
+import ReportService from '../services/report-service';
 
 export const changeSearchText = newText => ({
     type: 'SEARCH_TEXT_CHANGE',
@@ -94,6 +95,20 @@ export const generateLink = results => dispatch => {
                     type: 'LINK_GENERATE',
                     generatedLink: json,
                 });
+            }
+        })
+};
+
+export const generateReport = results => () => {
+    SearchService.generateReport(results)
+        .then(response => {
+            if (response.ok) {
+                return response.text();
+            }
+        })
+        .then(text => {
+            if (text) {
+                ReportService.download('export.doc', text);
             }
         })
 };
