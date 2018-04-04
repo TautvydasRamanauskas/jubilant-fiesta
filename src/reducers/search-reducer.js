@@ -101,6 +101,13 @@ const generateLink = (state, {generatedLink}) => {
     };
 };
 
+const mostPopular = (state, {popular}) => {
+    return {
+        ...state,
+        popular,
+    }
+};
+
 export default (state = {}, action) => {
     switch (action.type) {
         case 'SEARCH_TEXT_CHANGE':
@@ -117,6 +124,8 @@ export default (state = {}, action) => {
             return results(state, action);
         case 'LINK_GENERATE':
             return generateLink(state, action);
+        case 'MOST_POPULAR':
+            return mostPopular(state, action);
         default:
             return state;
     }

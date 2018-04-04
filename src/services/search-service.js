@@ -5,6 +5,10 @@ export default {
         return callApi(`/search/${keyword}`, 'POST');
     },
 
+    mostPopular() {
+        return callApi(`/search/popular/`, 'GET');
+    },
+
     retrieveBookmarks() {
         return callApi(`/bookmark`, 'GET');
     },

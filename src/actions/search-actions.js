@@ -42,6 +42,22 @@ export const search = keyword => dispatch => {
         })
 };
 
+export const mostPopular = () => dispatch => {
+    SearchService.mostPopular()
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            }
+            return new Promise(() => []);
+        })
+        .then(json => {
+            dispatch({
+                type: 'MOST_POPULAR',
+                popular: json,
+            });
+        })
+};
+
 export const bookmarks = () => dispatch => {
     SearchService.retrieveBookmarks()
         .then(response => {

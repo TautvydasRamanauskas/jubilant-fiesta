@@ -8,6 +8,7 @@ const initialState = {
         link: '',
         results: [],
         generatedLink: '',
+        popular: [],
     }
 };
 

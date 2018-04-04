@@ -22,6 +22,7 @@ class App extends Component {
             addVote,
             removeVote,
             generateReport,
+            popular,
         } = this.props;
 
         return (
@@ -48,9 +49,14 @@ class App extends Component {
                         onClick={() => links(link)}
                         onChange={changeLink}
                     />
+                    <Popular items={popular} onClick={search}/>
                 </div>
             </div>
         );
+    }
+
+    componentDidMount() {
+        this.props.mostPopular();
     }
 }
 
@@ -162,11 +168,25 @@ const Link = ({text, onClick, onChange}) => (
     </div>
 );
 
+const Popular = ({items, onClick}) => (
+    <div className="popular">
+        <b>Most popular searches:</b>
+        <ul>
+            {items.map((i, n) => (
+                <li key={n} onClick={e => onClick(i)}>
+                    {i}
+                </li>
+            ))}
+        </ul>
+    </div>
+);
+
 const mapStateToProps = state => ({
     searchText: state.search.text,
     results: state.search.results,
     link: state.search.link,
     generatedLink: state.search.generatedLink,
+    popular: state.search.popular,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
