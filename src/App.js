@@ -66,7 +66,7 @@ const SearchField = ({text, onChange}) => (
             className="search-field"
             placeholder='Enter you search keyword'
             type="text"
-            value={''}
+            value={text}
             onChange={e => onChange(e.target.value)}
         />
     </div>
@@ -161,7 +161,7 @@ const Link = ({text, onClick, onChange}) => (
             className="link-field"
             type="text"
             placeholder="Copy your link here"
-            value={''}
+            value={text}
             onChange={e => onChange(e.target.value)}
         />
         <button onClick={e => onClick()}>Display</button>
