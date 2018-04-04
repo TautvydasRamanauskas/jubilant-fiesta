@@ -66,7 +66,7 @@ const SearchField = ({text, onChange}) => (
             className="search-field"
             placeholder='Enter you search keyword'
             type="text"
-            value={text || ''}
+            value={''}
             onChange={e => onChange(e.target.value)}
         />
     </div>
@@ -131,11 +131,11 @@ const Vote = ({title, personalVote, addVote, removeVote}) => {
     switch (personalVote) {
         case 1:
             return (
-                <td onClick={e => removeVote({title, value: 1})}>⬆</td>
+                <td colSpan="2" align="center" onClick={e => removeVote({title, value: 1})}>⬆</td>
             );
         case -1:
             return (
-                <td onClick={e => removeVote({title, value: -1})}>⬇</td>
+                <td colSpan="2" align="center" onClick={e => removeVote({title, value: -1})}>⬇</td>
             );
         default:
             return ([
@@ -161,7 +161,7 @@ const Link = ({text, onClick, onChange}) => (
             className="link-field"
             type="text"
             placeholder="Copy your link here"
-            value={text || ''}
+            value={''}
             onChange={e => onChange(e.target.value)}
         />
         <button onClick={e => onClick()}>Display</button>
