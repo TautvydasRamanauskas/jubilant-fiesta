@@ -29,6 +29,7 @@ const bookmarkChange = (state, {entry}) => {
         return state;
     }
     return {
+        ...state,
         results: [
             ...results.slice(0, bookmarkIndex),
             {
@@ -50,6 +51,7 @@ const addVote = (state, {vote}) => {
     const voteResult = results[voteIndex];
     const {voteValue} = voteResult;
     return {
+        ...state,
         results: [
             ...results.slice(0, voteIndex),
             {
@@ -72,6 +74,7 @@ const removeVote = (state, {vote}) => {
     const voteResult = results[voteIndex];
     const {voteValue} = voteResult;
     return {
+        ...state,
         results: [
             ...results.slice(0, voteIndex),
             {
