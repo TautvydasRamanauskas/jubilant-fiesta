@@ -19,6 +19,8 @@ class App extends Component {
             links,
             changeLink,
             generateLink,
+            addVote,
+            removeVote,
         } = this.props;
 
         return (
@@ -34,6 +36,8 @@ class App extends Component {
                     {results.length > 0 && <Results
                         results={results}
                         onBookmarkClick={changeBookmark}
+                        addVote={addVote}
+                        removeVote={removeVote}
                         onGenerateLink={() => generateLink(results)}
                         generatedLink={generatedLink}
                     />}
@@ -53,7 +57,8 @@ const SearchField = ({text, onChange}) => (
         <input
             className="search-field"
             placeholder='Enter you search keyword'
-            value={text}
+            type="text"
+            value={text || ''}
             onChange={e => onChange(e.target.value)}
         />
     </div>
@@ -70,11 +75,19 @@ const Button = ({text, onClick}) => (
     </div>
 );
 
-const Results = ({results, onBookmarkClick, onGenerateLink, generatedLink}) => (
+const Results = ({results, onBookmarkClick, addVote, removeVote, onGenerateLink, generatedLink}) => (
     <div className="search-results">
         <table>
             <tbody>
-            {results.map(r => <Result key={r.id} result={r} onBookmarkClick={onBookmarkClick}/>)}
+            {results.map(r =>
+                <Result
+                    key={r.id}
+                    result={r}
+                    onBookmarkClick={onBookmarkClick}
+                    addVote={addVote}
+                    removeVote={removeVote}
+                />
+            )}
             </tbody>
         </table>
         {
@@ -85,20 +98,42 @@ const Results = ({results, onBookmarkClick, onGenerateLink, generatedLink}) => (
     </div>
 );
 
-const Result = ({result, onBookmarkClick}) => {
+const Result = ({result, onBookmarkClick, addVote, removeVote}) => {
+    const {result: title, count, voteValue, bookmark, personalVote} = result;
+    const rating = count + voteValue;
+    const userVotes = voteValue ? `(${voteValue > 0 ? '+' : ''}${voteValue})` : '';
     return (
         <tr>
             <td>
-                {result.result}
+                {title}
             </td>
             <td>
-                Count: {result.count}
+                Count: {rating} {userVotes}
             </td>
             <td onClick={e => onBookmarkClick(result)}>
-                {result.bookmark ? '★' : '☆'}
+                {bookmark ? '★' : '☆'}
             </td>
+            <Vote title={title} personalVote={personalVote} addVote={addVote} removeVote={removeVote}/>
         </tr>
     )
+};
+
+const Vote = ({title, personalVote, addVote, removeVote}) => {
+    switch (personalVote) {
+        case 1:
+            return (
+                <td onClick={e => removeVote({title, value: 1})}>⬆</td>
+            );
+        case -1:
+            return (
+                <td onClick={e => removeVote({title, value: -1})}>⬇</td>
+            );
+        default:
+            return ([
+                <td key="up-vote" onClick={e => addVote({title, value: 1})}>⇧</td>,
+                <td key="down-vote" onClick={e => addVote({title, value: -1})}>⇩</td>
+            ]);
+    }
 };
 
 const Link = ({text, onClick, onChange}) => (
@@ -107,7 +142,7 @@ const Link = ({text, onClick, onChange}) => (
             className="link-field"
             type="text"
             placeholder="Copy your link here"
-            value={text}
+            value={text || ''}
             onChange={e => onChange(e.target.value)}
         />
         <button onClick={e => onClick()}>Display</button>

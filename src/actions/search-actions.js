@@ -57,6 +57,30 @@ export const bookmarks = () => dispatch => {
         })
 };
 
+export const addVote = vote => dispatch => {
+    SearchService.addVote(vote)
+        .then(response => {
+            if (response.ok) {
+                dispatch({
+                    type: 'VOTE_ADD',
+                    vote,
+                });
+            }
+        })
+};
+
+export const removeVote = vote => dispatch => {
+    SearchService.removeVote(vote)
+        .then(response => {
+            if (response.ok) {
+                dispatch({
+                    type: 'VOTE_REMOVE',
+                    vote,
+                });
+            }
+        })
+};
+
 export const generateLink = results => dispatch => {
     SearchService.generatedLink(results)
         .then(response => {

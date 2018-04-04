@@ -17,6 +17,14 @@ export default {
         return callApi(`/bookmark`, 'DELETE', {...entry});
     },
 
+    addVote(vote) {
+        return callApi(`/vote/`, 'POST', vote);
+    },
+
+    removeVote(vote) {
+        return callApi(`/vote/`, 'DELETE', vote);
+    },
+
     generatedLink(results) {
         return callApi(`/link/`, 'POST', results);
     },
