@@ -98,7 +98,7 @@ const results = (state, {results}) => {
     return {
         ...state,
         text: '',
-        textValidationVisible: false,
+        textValidationVisible: 0,
         link: '',
         generatedLink: '',
         results: results.sort(compareResults),

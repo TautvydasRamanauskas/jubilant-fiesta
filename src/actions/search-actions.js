@@ -29,10 +29,23 @@ export const search = keyword => dispatch => {
     if (!keyword || keyword.length < 4) {
         dispatch({
             type: 'VALIDATION_CHANGE',
-            newState: true,
+            newState: 1,
         });
         return;
     }
+    if (keyword.includes("@") || keyword.includes("#") || keyword.includes("$") || keyword.includes("%") ||
+        keyword.includes("^") || keyword.includes("&") || keyword.includes("*") || keyword.includes("+") ||
+        keyword.includes("=") || keyword.includes("~") || keyword.includes("`") || keyword.includes("<") ||
+        keyword.includes(">") || keyword.includes("?") || keyword.includes("!") || keyword.includes(":") ||
+        keyword.includes(";") || keyword.includes("\\") || keyword.includes("|") || keyword.includes("{") ||
+        keyword.includes("}") || keyword.includes("/")) {
+        dispatch({
+            type: 'VALIDATION_CHANGE',
+            newState: 2,
+        });
+        return;
+    }
+
     SearchService.search(keyword)
         .then(response => {
             if (response.ok) {

@@ -64,7 +64,12 @@ class App extends Component {
 
 const SearchField = ({text, onChange, validationVisible}) => (
     <div className="search-field">
-        {validationVisible && <p className="search-field-validation">Text has to be at least 4 symbols long</p>}
+        {validationVisible === 1 &&
+        <p className="search-field-validation">Keyword has to be at least 4 symbols long</p>}
+        {validationVisible === 2 && <p className="search-field-validation">
+            Keyword contains unsupported symbol(s)<br/>
+            @#$%^&*!`~+={}|\?/:;
+        </p>}
         <input
             className="search-input"
             placeholder='Enter you search keyword'
