@@ -91,9 +91,10 @@ const Results = ({
     <div className="search-results">
         <table>
             <tbody>
-            {results.map(r =>
+            {results.map((r, i) =>
                 <Result
                     key={r.id}
+                    number={i}
                     result={r}
                     onBookmarkClick={onBookmarkClick}
                     addVote={addVote}
@@ -107,12 +108,16 @@ const Results = ({
     </div>
 );
 
-const Result = ({result, onBookmarkClick, addVote, removeVote}) => {
+const Result = ({number, result, onBookmarkClick, addVote, removeVote}) => {
     const {result: title, count, voteValue, bookmark, personalVote} = result;
     const rating = count + voteValue;
     const userVotes = voteValue ? `(${voteValue > 0 ? '+' : ''}${voteValue})` : '';
-    return (
-        <tr>
+    const referencesRows = result.references.map(r => <Reference reference={r}/>);
+    return ([
+        <tr className="result-row">
+            <td align="center">
+                {number + 1}.
+            </td>
             <td>
                 {title}
             </td>
@@ -123,8 +128,9 @@ const Result = ({result, onBookmarkClick, addVote, removeVote}) => {
                 {bookmark ? '★' : '☆'}
             </td>
             <Vote title={title} personalVote={personalVote} addVote={addVote} removeVote={removeVote}/>
-        </tr>
-    )
+        </tr>,
+        referencesRows,
+    ])
 };
 
 const Vote = ({title, personalVote, addVote, removeVote}) => {
@@ -144,6 +150,15 @@ const Vote = ({title, personalVote, addVote, removeVote}) => {
             ]);
     }
 };
+
+const Reference = ({reference}) => (
+    <tr className="reference">
+        <td/>
+        <td colSpan="5">
+            <a href={reference}>{reference}</a>
+        </td>
+    </tr>
+);
 
 const LinkGenerate = ({link, onGenerateLink}) => (
     <div>
