@@ -9,6 +9,7 @@ class App extends Component {
     render() {
         const {
             searchText,
+            textValidationVisible,
             results,
             generatedLink,
             link,
@@ -32,7 +33,8 @@ class App extends Component {
                     <h1 className="App-title">Welcome</h1>
                 </header>
                 <div className="App-intro">
-                    <SearchField text={searchText} onChange={changeSearchText}/>
+                    <SearchField text={searchText} onChange={changeSearchText}
+                                 validationVisible={textValidationVisible}/>
                     <Button text="Search" onClick={() => search(searchText)}/>
                     <Button text="Bookmarks" onClick={() => bookmarks()}/>
                     {results.length > 0 && <Results
@@ -60,10 +62,11 @@ class App extends Component {
     }
 }
 
-const SearchField = ({text, onChange}) => (
-    <div>
+const SearchField = ({text, onChange, validationVisible}) => (
+    <div className="search-field">
+        {validationVisible && <p className="search-field-validation">Text has to be at least 4 symbols long</p>}
         <input
-            className="search-field"
+            className="search-input"
             placeholder='Enter you search keyword'
             type="text"
             value={text}
@@ -198,6 +201,7 @@ const Popular = ({items, onClick}) => (
 
 const mapStateToProps = state => ({
     searchText: state.search.text,
+    textValidationVisible: state.search.textValidationVisible,
     results: state.search.results,
     link: state.search.link,
     generatedLink: state.search.generatedLink,

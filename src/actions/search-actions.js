@@ -26,7 +26,13 @@ export const changeBookmark = (entry) => dispatch => {
 };
 
 export const search = keyword => dispatch => {
-    if (!keyword) return;
+    if (!keyword || keyword.length < 4) {
+        dispatch({
+            type: 'VALIDATION_CHANGE',
+            newState: true,
+        });
+        return;
+    }
     SearchService.search(keyword)
         .then(response => {
             if (response.ok) {

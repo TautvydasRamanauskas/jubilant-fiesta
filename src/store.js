@@ -5,6 +5,7 @@ import rootReducer from './reducers/';
 const initialState = {
     search: {
         text: '',
+        textValidationVisible: false,
         link: '',
         results: [],
         generatedLink: '',

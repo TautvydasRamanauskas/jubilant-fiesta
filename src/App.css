@@ -23,8 +23,16 @@
 }
 
 .search-field {
-    width: 500px;
     margin: 25px;
+}
+
+.search-input {
+    width: 500px;
+}
+
+.search-field-validation {
+    font-size: 0.75em;
+    color: red;
 }
 
 .action-button {
