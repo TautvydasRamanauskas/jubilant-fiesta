@@ -26,7 +26,7 @@ export const changeBookmark = (entry) => dispatch => {
 };
 
 export const search = keyword => dispatch => {
-    if (!keyword || keyword.length < 4) {
+    if (!keyword || keyword.length < 2) {
         dispatch({
             type: 'VALIDATION_CHANGE',
             newState: 1,

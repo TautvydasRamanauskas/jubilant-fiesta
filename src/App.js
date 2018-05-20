@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import logo from './logo.svg';
 import './App.css';
 import * as actions from './actions/search-actions';
 
@@ -29,7 +28,6 @@ class App extends Component {
         return (
             <div className="App">
                 <header className="App-header">
-                    <img src={logo} className="App-logo" alt="logo"/>
                     <h1 className="App-title">Welcome</h1>
                 </header>
                 <div className="App-intro">
@@ -65,7 +63,7 @@ class App extends Component {
 const SearchField = ({text, onChange, validationVisible}) => (
     <div className="search-field">
         {validationVisible === 1 &&
-        <p className="search-field-validation">Keyword has to be at least 4 symbols long</p>}
+        <p className="search-field-validation">Keyword has to be at least 2 symbols long</p>}
         {validationVisible === 2 && <p className="search-field-validation">
             Keyword contains unsupported symbol(s)<br/>
             @#$%^&*!`~+={}|\?/:;
