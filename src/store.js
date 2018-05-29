@@ -10,6 +10,7 @@ const initialState = {
         results: [],
         generatedLink: '',
         popular: [],
+        loading: false,
     }
 };
 

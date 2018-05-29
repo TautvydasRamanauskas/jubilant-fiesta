@@ -15,6 +15,13 @@ const changeSearchText = (state, {newText: text}) => {
     };
 };
 
+const startSearch = (state) => {
+    return {
+        ...state,
+        loading: true,
+    }
+};
+
 const changeValidationVisibility = (state, {newState: textValidationVisible}) => {
     return {
         ...state,
@@ -102,6 +109,7 @@ const results = (state, {results}) => {
         link: '',
         generatedLink: '',
         results: results.sort(compareResults),
+        loading: false,
     };
 };
 
@@ -123,6 +131,8 @@ export default (state = {}, action) => {
     switch (action.type) {
         case 'SEARCH_TEXT_CHANGE':
             return changeSearchText(state, action);
+        case 'SEARCH_START':
+            return startSearch(state);
         case 'VALIDATION_CHANGE':
             return changeValidationVisibility(state, action);
         case 'LINK_CHANGE':

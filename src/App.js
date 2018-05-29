@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import LoadingIndicator from 'react-loading-indicator';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import './App.css';
@@ -23,8 +24,8 @@ class App extends Component {
             removeVote,
             generateReport,
             popular,
+            loading,
         } = this.props;
-
         return (
             <div className="App">
                 <header className="App-header">
@@ -33,7 +34,13 @@ class App extends Component {
                 <div className="App-intro">
                     <SearchField text={searchText} onChange={changeSearchText}
                                  validationVisible={textValidationVisible}/>
-                    <Button text="Search" onClick={() => search(searchText)}/>
+
+                    {
+                        loading ?
+                            <LoadingIndicator/> :
+                            <Button text="Search" onClick={() => search(searchText)}/>
+                    }
+
                     <Button text="Bookmarks" onClick={() => bookmarks()}/>
                     {results.length > 0 && <Results
                         results={results}
@@ -209,6 +216,7 @@ const mapStateToProps = state => ({
     link: state.search.link,
     generatedLink: state.search.generatedLink,
     popular: state.search.popular,
+    loading: state.search.loading,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);

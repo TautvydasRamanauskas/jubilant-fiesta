@@ -46,6 +46,10 @@ export const search = keyword => dispatch => {
         return;
     }
 
+    dispatch({
+        type: 'SEARCH_START',
+    });
+
     SearchService.search(keyword)
         .then(response => {
             if (response.ok) {
