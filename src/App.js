@@ -38,6 +38,7 @@ class App extends Component {
                     <h1 className="App-title">Welcome</h1>
                 </header>
                 <div className="App-intro">
+                    <Facebook/>
                     <SearchField text={searchText} onChange={changeSearchText}
                                  validationVisible={textValidationVisible}/>
 
@@ -62,7 +63,6 @@ class App extends Component {
                         onClick={() => links(link)}
                         onChange={changeLink}
                     />
-                    <Facebook/>
                     <Popular items={popular} onClick={search}/>
                 </div>
             </div>

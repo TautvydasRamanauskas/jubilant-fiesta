@@ -11,7 +11,8 @@ const initialState = {
         generatedLink: '',
         popular: [],
         loading: false,
-    }
+    },
+    user: {},
 };
 
 const enhancers = compose(
