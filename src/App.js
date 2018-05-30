@@ -5,6 +5,11 @@ import {bindActionCreators} from 'redux';
 import './App.css';
 import * as actions from './actions/search-actions';
 import Facebook from "./components/Facebook";
+import Link from "./components/Link";
+import Popular from "./components/Popular";
+import Results from "./components/Results";
+import Button from "./components/Button";
+import SearchField from "./components/SearchField";
 
 class App extends Component {
     render() {
@@ -68,148 +73,6 @@ class App extends Component {
         this.props.mostPopular();
     }
 }
-
-const SearchField = ({text, onChange, validationVisible}) => (
-    <div className="search-field">
-        {validationVisible === 1 &&
-        <p className="search-field-validation">Keyword has to be at least 2 symbols long</p>}
-        {validationVisible === 2 && <p className="search-field-validation">
-            Keyword contains unsupported symbol(s)<br/>
-            @#$%^&*!`~+={}|\?/:;
-        </p>}
-        <input
-            className="search-input"
-            placeholder='Enter you search keyword'
-            type="text"
-            value={text}
-            onChange={e => onChange(e.target.value)}
-        />
-    </div>
-);
-
-const Button = ({text, onClick}) => (
-    <div>
-        <input
-            className="action-button"
-            type="button"
-            value={text}
-            onClick={e => onClick()}
-        />
-    </div>
-);
-
-const Results = ({
-                     results, onBookmarkClick, addVote,
-                     removeVote, onGenerateReport,
-                     onGenerateLink, generatedLink
-                 }) => (
-    <div className="search-results">
-        <table>
-            <tbody>
-            {results.map((r, i) =>
-                <Result
-                    key={r.id}
-                    number={i}
-                    result={r}
-                    onBookmarkClick={onBookmarkClick}
-                    addVote={addVote}
-                    removeVote={removeVote}
-                />
-            )}
-            </tbody>
-        </table>
-        <LinkGenerate link={generatedLink} onGenerateLink={onGenerateLink}/>
-        <button className="table-button" onClick={e => onGenerateReport()}>Generate Report</button>
-    </div>
-);
-
-const Result = ({number, result, onBookmarkClick, addVote, removeVote}) => {
-    const {result: title, count, voteValue, bookmark, personalVote} = result;
-    const rating = count + voteValue;
-    const userVotes = voteValue ? `(${voteValue > 0 ? '+' : ''}${voteValue})` : '';
-    const referencesRows = result.references.map(r => <Reference reference={r}/>);
-    return ([
-        <tr className="result-row">
-            <td align="center">
-                {number + 1}.
-            </td>
-            <td>
-                {title}
-            </td>
-            <td>
-                Rating: {rating} {userVotes}
-            </td>
-            <td onClick={e => onBookmarkClick(result)}>
-                {bookmark ? '★' : '☆'}
-            </td>
-            <Vote title={title} personalVote={personalVote} addVote={addVote} removeVote={removeVote}/>
-        </tr>,
-        referencesRows,
-    ])
-};
-
-const Vote = ({title, personalVote, addVote, removeVote}) => {
-    switch (personalVote) {
-        case 1:
-            return (
-                <td colSpan="2" align="center" onClick={e => removeVote({title, value: 1})}>⬆</td>
-            );
-        case -1:
-            return (
-                <td colSpan="2" align="center" onClick={e => removeVote({title, value: -1})}>⬇</td>
-            );
-        default:
-            return ([
-                <td key="up-vote" onClick={e => addVote({title, value: 1})}>⇧</td>,
-                <td key="down-vote" onClick={e => addVote({title, value: -1})}>⇩</td>
-            ]);
-    }
-};
-
-const Reference = ({reference}) => (
-    <tr className="reference">
-        <td/>
-        <td colSpan="5">
-            <a href={reference}>{reference}</a>
-        </td>
-    </tr>
-);
-
-const LinkGenerate = ({link, onGenerateLink}) => (
-    <div>
-        {
-            link ?
-                <input className="table-button" type="text" disabled="true" value={link}/> :
-                <button className="table-button" onClick={e => onGenerateLink()}>Generate Link</button>
-        }
-    </div>
-);
-
-const Link = ({text, onClick, onChange}) => (
-    <div>
-        <input
-            className="link-field"
-            type="text"
-            placeholder="Copy your link here"
-            value={text}
-            onChange={e => onChange(e.target.value)}
-        />
-        <button onClick={e => onClick()}>Display</button>
-    </div>
-);
-
-const Popular = ({items, onClick}) => (
-    <div className="popular">
-        <b>Most popular searches:</b>
-        <ul>
-            {items.map((i, n) => (
-                <li key={n} onClick={e => onClick(i)}>
-                    {i}
-                </li>
-            ))}
-        </ul>
-    </div>
-);
 
 const mapStateToProps = state => ({
     searchText: state.search.text,
