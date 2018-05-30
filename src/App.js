@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import './App.css';
 import * as actions from './actions/search-actions';
+import Facebook from "./components/Facebook";
 
 class App extends Component {
     render() {
@@ -56,6 +57,7 @@ class App extends Component {
                         onClick={() => links(link)}
                         onChange={changeLink}
                     />
+                    <Facebook/>
                     <Popular items={popular} onClick={search}/>
                 </div>
             </div>
@@ -135,7 +137,7 @@ const Result = ({number, result, onBookmarkClick, addVote, removeVote}) => {
                 {title}
             </td>
             <td>
-                Count: {rating} {userVotes}
+                Rating: {rating} {userVotes}
             </td>
             <td onClick={e => onBookmarkClick(result)}>
                 {bookmark ? '★' : '☆'}
