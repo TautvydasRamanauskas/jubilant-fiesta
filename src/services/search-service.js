@@ -9,26 +9,6 @@ export default {
         return callApi(`/search/popular/`, 'GET');
     },
 
-    retrieveBookmarks() {
-        return callApi(`/bookmark`, 'GET');
-    },
-
-    addBookmark(entry) {
-        return callApi(`/bookmark`, 'POST', {...entry});
-    },
-
-    removeBookmark(entry) {
-        return callApi(`/bookmark`, 'DELETE', {...entry});
-    },
-
-    addVote(vote) {
-        return callApi(`/vote/`, 'POST', vote);
-    },
-
-    removeVote(vote) {
-        return callApi(`/vote/`, 'DELETE', vote);
-    },
-
     generateReport(results) {
         return callApi(`/report/`, 'POST', results);
     },

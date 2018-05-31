@@ -1,5 +1,7 @@
 import SearchService from '../services/search-service';
 import ReportService from '../services/report-service';
+import BookmarkService from '../services/bookmark-service';
+import VoteService from '../services/vote-service';
 
 export const changeSearchText = newText => ({
     type: 'SEARCH_TEXT_CHANGE',
@@ -13,7 +15,7 @@ export const changeLink = newLink => ({
 
 export const changeBookmark = (entry) => dispatch => {
     const {bookmark} = entry;
-    const promise = bookmark ? SearchService.removeBookmark(entry) : SearchService.addBookmark(entry);
+    const promise = bookmark ? BookmarkService.removeBookmark(entry) : BookmarkService.addBookmark(entry);
     promise.then(response => {
         if (response.ok) {
             dispatch({
@@ -82,7 +84,7 @@ export const mostPopular = () => dispatch => {
 };
 
 export const bookmarks = () => dispatch => {
-    SearchService.retrieveBookmarks()
+    BookmarkService.retrieveBookmarks()
         .then(response => {
             if (response.ok) {
                 return response.json();
@@ -98,7 +100,7 @@ export const bookmarks = () => dispatch => {
 };
 
 export const addVote = vote => dispatch => {
-    SearchService.addVote(vote)
+    VoteService.addVote(vote)
         .then(response => {
             if (response.ok) {
                 dispatch({
@@ -110,7 +112,7 @@ export const addVote = vote => dispatch => {
 };
 
 export const removeVote = vote => dispatch => {
-    SearchService.removeVote(vote)
+    VoteService.removeVote(vote)
         .then(response => {
             if (response.ok) {
                 dispatch({
