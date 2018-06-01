@@ -21,7 +21,12 @@ const Result = ({number, result, onBookmarkClick, addVote, removeVote}) => {
             <td onClick={e => onBookmarkClick(result)}>
                 {bookmark ? '★' : '☆'}
             </td>
-            <Vote title={title} personalVote={personalVote} addVote={addVote} removeVote={removeVote}/>
+            <Vote
+                result={result}
+                personalVote={personalVote}
+                addVote={v => addVote({...v, result})}
+                removeVote={v => removeVote({...v, result})}
+            />
         </tr>,
         referencesRows,
     ])

@@ -1,7 +1,6 @@
-const login = (state, {id, level}) => ({
+const login = (state, {user}) => ({
     ...state,
-    id,
-    level,
+    ...user,
 });
 
 const logout = (state) => ({});

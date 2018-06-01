@@ -14,8 +14,7 @@ export const login = (response) => dispatch => {
         .then(json => {
             dispatch({
                 type: 'LOGIN_SUCCESS',
-                id: json.facebookId,
-                level: json.level,
+                user: json
             });
         })
         .catch(err => {

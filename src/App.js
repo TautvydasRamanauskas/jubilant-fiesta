@@ -31,6 +31,7 @@ class App extends Component {
             generateReport,
             popular,
             loading,
+            user,
         } = this.props;
         return (
             <div className="App">
@@ -45,15 +46,15 @@ class App extends Component {
                     {
                         loading ?
                             <LoadingIndicator/> :
-                            <Button text="Search" onClick={() => search(searchText)}/>
+                            <Button text="Search" onClick={() => search(searchText, user)}/>
                     }
 
-                    <Button text="Bookmarks" onClick={() => bookmarks()}/>
+                    <Button text="Bookmarks" onClick={() => bookmarks(user.id)}/>
                     {results.length > 0 && <Results
                         results={results}
-                        onBookmarkClick={changeBookmark}
-                        addVote={addVote}
-                        removeVote={removeVote}
+                        onBookmarkClick={e => changeBookmark(e, user)}
+                        addVote={v => addVote({...v, user})}
+                        removeVote={v => removeVote({...v, user})}
                         onGenerateReport={() => generateReport(results)}
                         onGenerateLink={() => generateLink(results)}
                         generatedLink={generatedLink}
@@ -63,7 +64,7 @@ class App extends Component {
                         onClick={() => links(link)}
                         onChange={changeLink}
                     />
-                    <Popular items={popular} onClick={search}/>
+                    <Popular items={popular} onClick={k => search(k, user)}/>
                 </div>
             </div>
         );
@@ -82,6 +83,7 @@ const mapStateToProps = state => ({
     generatedLink: state.search.generatedLink,
     popular: state.search.popular,
     loading: state.search.loading,
+    user: state.user,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);

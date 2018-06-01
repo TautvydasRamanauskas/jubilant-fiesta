@@ -57,8 +57,8 @@ const bookmarkChange = (state, {entry}) => {
 
 const addVote = (state, {vote}) => {
     const {results} = state;
-    const {title, value} = vote;
-    const voteIndex = results.findIndex(r => r.result === title);
+    const {result, value} = vote;
+    const voteIndex = results.findIndex(r => r.id === result.id);
     if (voteIndex === -1) {
         return state;
     }
@@ -80,8 +80,8 @@ const addVote = (state, {vote}) => {
 
 const removeVote = (state, {vote}) => {
     const {results} = state;
-    const {title, value} = vote;
-    const voteIndex = results.findIndex(r => r.result === title);
+    const {result, value} = vote;
+    const voteIndex = results.findIndex(r => r.id === result.id);
     if (voteIndex === -1) {
         return state;
     }

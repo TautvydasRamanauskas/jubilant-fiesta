@@ -1,8 +1,8 @@
 import callApi from './call-service';
 
 export default {
-    search(keyword) {
-        return callApi(`/search/${keyword}`, 'POST');
+    search(keyword, user) {
+        return callApi(`/search/${keyword}`, 'POST', {...user});
     },
 
     mostPopular() {

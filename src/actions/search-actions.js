@@ -13,9 +13,9 @@ export const changeLink = newLink => ({
     newLink,
 });
 
-export const changeBookmark = (entry) => dispatch => {
+export const changeBookmark = (entry, user) => dispatch => {
     const {bookmark} = entry;
-    const promise = bookmark ? BookmarkService.removeBookmark(entry) : BookmarkService.addBookmark(entry);
+    const promise = bookmark ? BookmarkService.removeBookmark(entry, user) : BookmarkService.addBookmark(entry, user);
     promise.then(response => {
         if (response.ok) {
             dispatch({
@@ -27,7 +27,7 @@ export const changeBookmark = (entry) => dispatch => {
     })
 };
 
-export const search = keyword => dispatch => {
+export const search = (keyword, user) => dispatch => {
     if (!keyword || keyword.length < 2) {
         dispatch({
             type: 'VALIDATION_CHANGE',
@@ -52,7 +52,7 @@ export const search = keyword => dispatch => {
         type: 'SEARCH_START',
     });
 
-    SearchService.search(keyword)
+    SearchService.search(keyword, user)
         .then(response => {
             if (response.ok) {
                 return response.json();
@@ -83,8 +83,8 @@ export const mostPopular = () => dispatch => {
         })
 };
 
-export const bookmarks = () => dispatch => {
-    BookmarkService.retrieveBookmarks()
+export const bookmarks = (userId) => dispatch => {
+    BookmarkService.retrieveBookmarks(userId)
         .then(response => {
             if (response.ok) {
                 return response.json();
