@@ -1,19 +1,27 @@
 import React from 'react';
-import IconButton from 'material-ui/IconButton';
+import FlatButton from 'material-ui/FlatButton';
 import OptionsIcon from 'material-ui/svg-icons/action/settings';
-import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
+import SearchIcon from 'material-ui/svg-icons/action/search';
+import {Toolbar, ToolbarGroup, ToolbarSeparator} from 'material-ui/Toolbar';
 import {withRouter} from 'react-router-dom'
+
+const searchButtonStyle = {
+    verticalAlign: 'middle',
+};
 
 const ToolbarHeader = withRouter(
     ({history}) => (
         <Toolbar>
-            <ToolbarGroup firstChild={true}/>
+            <ToolbarGroup firstChild={true}>
+                <FlatButton label="Search" labelPosition="before" onClick={e => history.push('/')}>
+                    <SearchIcon style={searchButtonStyle}/>
+                </FlatButton>
+            </ToolbarGroup>
             <ToolbarGroup>
                 <ToolbarSeparator className="toolbar-separator"/>
-                <ToolbarTitle text="Options"/>
-                <IconButton>
-                    <OptionsIcon onClick={e => history.push('/options')}/>
-                </IconButton>
+                <FlatButton label="Options" labelPosition="before" onClick={e => history.push('/options')}>
+                    <OptionsIcon style={searchButtonStyle}/>
+                </FlatButton>
             </ToolbarGroup>
         </Toolbar>
     )
