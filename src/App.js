@@ -9,10 +9,10 @@ import Popular from "./components/Popular";
 import Results from "./components/Results";
 import Button from "./components/Button";
 import SearchField from "./components/SearchField";
-import Search from 'material-ui/svg-icons/action/search';
+import SearchIcon from 'material-ui/svg-icons/action/search';
 import Bookmark from 'material-ui/svg-icons/action/bookmark';
 
-class App extends Component {
+class Search extends Component {
     render() {
         const {
             searchText,
@@ -42,7 +42,8 @@ class App extends Component {
                 {
                     loading ?
                         <LoadingIndicator/> :
-                        <Button text="Search" onClick={() => search(searchText, user)} primary={true} icon={<Search/>}/>
+                        <Button text="Search" onClick={() => search(searchText, user)} primary={true}
+                                icon={<SearchIcon/>}/>
                 }
 
                 <Button text="Bookmarks" onClick={() => bookmarks(user.id)} secondary={true} icon={<Bookmark/>}/>
@@ -83,4 +84,4 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(Search);

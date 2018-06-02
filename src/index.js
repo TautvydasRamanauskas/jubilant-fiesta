@@ -8,9 +8,9 @@ import store from './store';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import App from './App';
 import AuthRoute from './components/AuthRoute';
-import Login from './components/Login';
+import Login from './components/user/Login';
 import Toolbar from "./components/Toolbar";
-import Options from "./components/Options";
+import Options from "./components/options/Options";
 
 const noHeaderLinks = [
     '/login',

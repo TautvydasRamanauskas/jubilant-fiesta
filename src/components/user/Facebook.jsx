@@ -2,7 +2,7 @@ import React from 'react';
 import FacebookLogin from 'react-facebook-login';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import * as actionCreators from '../actions/user-actions';
+import * as actionCreators from '../../actions/user-actions';
 import {Redirect} from "react-router-dom";
 
 const Facebook = ({user, login}) => {

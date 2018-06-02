@@ -13,6 +13,23 @@ const initialState = {
         loading: false,
     },
     user: {},
+    options: {
+        neuralNetwork: true,
+        searchEngine: {
+            google: true,
+            yandex: true,
+            cache: true,
+        },
+        textRules: {
+            parenthesis: true,
+            review: true,
+            numbers: true,
+        },
+        rating: {
+            minRating: 2,
+            ratingDialogOpen: false,
+        },
+    },
 };
 
 const enhancers = compose(

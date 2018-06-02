@@ -1,6 +1,11 @@
+
+body {
+    background: url("background-image.jpg") no-repeat fixed;
+}
+
 .app {
     text-align: center;
-    margin-top: 10%;
+    margin-top: 5%;
 }
 
 .search-field {
@@ -55,12 +60,12 @@
     display: inline-block;
 }
 
-body {
-    background: url("background-image.jpg") no-repeat fixed;
-}
-
 .login {
     font-size: 1.5em;
     text-align: center;
     margin-top: 20%;
+}
+
+.options {
+    margin: 25px 250px;
 }
