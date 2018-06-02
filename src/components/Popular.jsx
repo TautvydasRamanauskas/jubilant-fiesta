@@ -14,16 +14,16 @@ const Popular = ({items, onClick}) => (
     <div className="popular">
         <List>
             <Subheader>Most popular searches:</Subheader>
-            {items.map((i, n) => <PopularItem i={i} n={n} onClick={onClick}/>)}
+            {items.map((i) => <PopularItem item={i} onClick={onClick}/>)}
         </List>
     </div>
 );
 
-const PopularItem = ({i, n, onClick}) => (
+const PopularItem = ({item, onClick}) => (
     <ListItem
-        key={n}
-        onClick={e => onClick(i)}
-        primaryText={i}
+        key={item.id}
+        onClick={e => onClick(item.keyword)}
+        primaryText={item.keyword}
         style={style}
         rightIcon={<Search color={popularItemColor}/>}
     />
