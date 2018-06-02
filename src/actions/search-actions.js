@@ -134,7 +134,7 @@ export const generateLink = results => dispatch => {
             if (json) {
                 dispatch({
                     type: 'LINK_GENERATE',
-                    generatedLink: json,
+                    generatedLink: json.link,
                 });
             }
         })
@@ -154,8 +154,8 @@ export const generateReport = results => () => {
         })
 };
 
-export const links = link => dispatch => {
-    SearchService.link(link)
+export const links = (link, user) => dispatch => {
+    SearchService.link(link, user)
         .then(response => {
             if (response.ok) {
                 return response.json();

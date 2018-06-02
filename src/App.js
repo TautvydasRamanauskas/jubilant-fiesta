@@ -61,7 +61,7 @@ class App extends Component {
                     />}
                     <Link
                         text={link}
-                        onClick={() => links(link)}
+                        onClick={() => links(link, user)}
                         onChange={changeLink}
                     />
                     <Popular items={popular} onClick={k => search(k, user)}/>

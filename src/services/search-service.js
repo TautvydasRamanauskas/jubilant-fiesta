@@ -17,7 +17,7 @@ export default {
         return callApi(`/link/`, 'POST', results);
     },
 
-    link(link) {
-        return callApi(`/link/${link}`, 'GET');
+    link(link, user) {
+        return callApi(`/link/${link}`, 'POST', user);
     },
 }
