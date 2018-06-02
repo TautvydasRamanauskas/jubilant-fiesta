@@ -1,7 +1,6 @@
 import UserService from '../services/user-service';
 
 export const login = (response) => dispatch => {
-    console.log(response);
     const {accessToken, userID} = response;
 
     UserService.login(userID, accessToken)

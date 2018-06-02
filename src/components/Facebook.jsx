@@ -3,6 +3,7 @@ import FacebookLogin from 'react-facebook-login';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as actionCreators from '../actions/user-actions';
+import {Redirect} from "react-router-dom";
 
 const Facebook = ({user, login}) => {
     if (!user.id) {
@@ -17,7 +18,7 @@ const Facebook = ({user, login}) => {
             </div>
         )
     }
-    return null;
+    return <Redirect to="/"/>
 };
 
 const mapStateToProps = state => ({

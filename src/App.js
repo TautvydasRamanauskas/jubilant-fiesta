@@ -4,7 +4,6 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import './App.css';
 import * as actions from './actions/search-actions';
-import Facebook from "./components/Facebook";
 import Link from "./components/Link";
 import Popular from "./components/Popular";
 import Results from "./components/Results";
@@ -39,7 +38,6 @@ class App extends Component {
                     <h1 className="App-title">Welcome</h1>
                 </header>
                 <div className="App-intro">
-                    <Facebook/>
                     <SearchField text={searchText} onChange={changeSearchText}
                                  validationVisible={textValidationVisible}/>
 
