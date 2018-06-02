@@ -7,7 +7,7 @@ import {Provider} from 'react-redux';
 import store from './store';
 import App from './App';
 import AuthRoute from './components/AuthRoute';
-import Facebook from './components/Facebook';
+import Login from './components/Login';
 
 const noHeaderLinks = [
     '/login',
@@ -24,7 +24,7 @@ ReactDOM.render(
                 {/*<Route component={HeaderWrapper}/>*/}
                 <Switch>
                     <AuthRoute path="/" exact component={App}/>
-                    <Route path="/login" component={Facebook}/>
+                    <Route path="/login" component={Login}/>
                     <Redirect to="/"/>
                 </Switch>
             </div>

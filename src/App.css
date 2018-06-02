@@ -95,8 +95,14 @@
     text-decoration: none;
 }
 
-.facebook-login {
-    margin: 10px;
+body {
+    background: url("background-image.jpg");
+}
+
+.login {
+    font-size: 1.5em;
+    text-align: center;
+    margin-top: 20%;
 }
 
 @keyframes App-logo-spin {
