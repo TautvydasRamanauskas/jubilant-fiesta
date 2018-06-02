@@ -59,6 +59,10 @@ body {
     background: url("background-image.jpg") no-repeat fixed;
 }
 
+.toolbar-separator {
+    margin: 25px;
+}
+
 .login {
     font-size: 1.5em;
     text-align: center;
