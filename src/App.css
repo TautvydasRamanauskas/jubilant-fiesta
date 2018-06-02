@@ -1,63 +1,49 @@
-.App {
+.app {
     text-align: center;
-}
-
-.App-logo {
-    animation: App-logo-spin infinite 20s linear;
-    height: 80px;
-}
-
-.App-header {
-    background-color: #222;
-    padding: 20px;
-    height: 150px;
-    color: white;
-}
-
-.App-title {
-    font-size: 5em;
-}
-
-.App-intro {
-    font-size: large;
+    margin-top: 10%;
 }
 
 .search-field {
-    margin: 25px;
+    margin: 10px;
 }
 
 .search-input {
     width: 500px;
 }
 
-.search-field-validation {
-    font-size: 0.75em;
-    color: red;
-}
-
 .action-button {
     width: 250px;
     height: 25px;
+    margin: 10px;
+}
+
+.table-button {
+    width: 350px;
+    height: 25px;
+    margin: 10px;
 }
 
 .search-results {
-    padding-top: 50px;
-    padding-bottom: 50px;
-}
-
-.search-results table {
-    margin-left: auto;
-    margin-right: auto;
-    text-align: left;
-    border-collapse: collapse;
+    margin: 25px;
 }
 
 .search-results td {
     padding: 5px 10px;
+    color: #e91e63;
 }
 
-.search-results td:hover {
-    background-color: lightgray;
+.search-results tr:hover {
+    background-color: #00bcd4;
+}
+
+.result-row td {
+    border-top: 3px solid #e91e63;
+}
+
+.reference a {
+    color: #e91e63;
+    text-decoration: underline;
+    font-style: italic;
 }
 
 .link-field {
@@ -65,51 +51,16 @@
     margin: 25px 10px 10px;
 }
 
-.table-button {
-    width: 250px;
-}
-
 .popular {
-    font-size: 0.75em;
     display: inline-block;
-    text-align: left;
-    padding: 25px;
-}
-
-.popular li {
-    color: blue;
-    text-decoration: underline;
-}
-
-.popular li:hover {
-    color: black;
-}
-
-.result-row td {
-    border-top: solid black;
-}
-
-.reference a {
-    color: blue;
-    font-size: 0.75em;
-    text-decoration: none;
 }
 
 body {
-    background: url("background-image.jpg");
+    background: url("background-image.jpg") no-repeat fixed;
 }
 
 .login {
     font-size: 1.5em;
     text-align: center;
     margin-top: 20%;
-}
-
-@keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
 }

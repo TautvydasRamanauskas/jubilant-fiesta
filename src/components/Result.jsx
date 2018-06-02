@@ -1,6 +1,10 @@
 import React from 'react';
 import Reference from "./Reference";
 import Vote from "./Vote";
+import {TableRow, TableRowColumn} from 'material-ui/Table';
+import Bookmark from 'material-ui/svg-icons/action/bookmark';
+import BookmarkBorder from 'material-ui/svg-icons/action/bookmark-border';
+import {pink500 as red} from 'material-ui/styles/colors';
 
 const Result = ({number, result, onBookmarkClick, addVote, removeVote}) => {
     const {result: title, count, voteValue, bookmark, personalVote} = result;
@@ -8,26 +12,26 @@ const Result = ({number, result, onBookmarkClick, addVote, removeVote}) => {
     const userVotes = voteValue ? `(${voteValue > 0 ? '+' : ''}${voteValue})` : '';
     const referencesRows = result.references.map(r => <Reference reference={r}/>);
     return ([
-        <tr className="result-row">
-            <td align="center">
+        <TableRow className="result-row">
+            <TableRowColumn align="center">
                 {number + 1}.
-            </td>
-            <td>
+            </TableRowColumn>
+            <TableRowColumn>
                 {title}
-            </td>
-            <td>
+            </TableRowColumn>
+            <TableRowColumn>
                 Rating: {rating} {userVotes}
-            </td>
-            <td onClick={e => onBookmarkClick(result)}>
-                {bookmark ? '★' : '☆'}
-            </td>
+            </TableRowColumn>
+            <TableRowColumn onClick={e => onBookmarkClick(result)}>
+                {bookmark ? <Bookmark color={red}/> : <BookmarkBorder color={red}/>}
+            </TableRowColumn>
             <Vote
                 result={result}
                 personalVote={personalVote}
                 addVote={v => addVote({...v, result})}
                 removeVote={v => removeVote({...v, result})}
             />
-        </tr>,
+        </TableRow>,
         referencesRows,
     ])
 };

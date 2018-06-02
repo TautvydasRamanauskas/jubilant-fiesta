@@ -9,6 +9,8 @@ import Popular from "./components/Popular";
 import Results from "./components/Results";
 import Button from "./components/Button";
 import SearchField from "./components/SearchField";
+import Search from 'material-ui/svg-icons/action/search';
+import Bookmark from 'material-ui/svg-icons/action/bookmark';
 
 class App extends Component {
     render() {
@@ -33,37 +35,32 @@ class App extends Component {
             user,
         } = this.props;
         return (
-            <div className="App">
-                <header className="App-header">
-                    <h1 className="App-title">Welcome</h1>
-                </header>
-                <div className="App-intro">
-                    <SearchField text={searchText} onChange={changeSearchText}
-                                 validationVisible={textValidationVisible}/>
+            <div className="app">
+                <SearchField text={searchText} onChange={changeSearchText}
+                             validationVisible={textValidationVisible}/>
 
-                    {
-                        loading ?
-                            <LoadingIndicator/> :
-                            <Button text="Search" onClick={() => search(searchText, user)}/>
-                    }
+                {
+                    loading ?
+                        <LoadingIndicator/> :
+                        <Button text="Search" onClick={() => search(searchText, user)} primary={true} icon={<Search/>}/>
+                }
 
-                    <Button text="Bookmarks" onClick={() => bookmarks(user.id)}/>
-                    {results.length > 0 && <Results
-                        results={results}
-                        onBookmarkClick={e => changeBookmark(e, user)}
-                        addVote={v => addVote({...v, user})}
-                        removeVote={v => removeVote({...v, user})}
-                        onGenerateReport={() => generateReport(results)}
-                        onGenerateLink={() => generateLink(results)}
-                        generatedLink={generatedLink}
-                    />}
-                    <Link
-                        text={link}
-                        onClick={() => links(link, user)}
-                        onChange={changeLink}
-                    />
-                    <Popular items={popular} onClick={k => search(k, user)}/>
-                </div>
+                <Button text="Bookmarks" onClick={() => bookmarks(user.id)} secondary={true} icon={<Bookmark/>}/>
+                {results.length > 0 && <Results
+                    results={results}
+                    onBookmarkClick={e => changeBookmark(e, user)}
+                    addVote={v => addVote({...v, user})}
+                    removeVote={v => removeVote({...v, user})}
+                    onGenerateReport={() => generateReport(results)}
+                    onGenerateLink={() => generateLink(results)}
+                    generatedLink={generatedLink}
+                />}
+                <Link
+                    text={link}
+                    onClick={() => links(link, user)}
+                    onChange={changeLink}
+                />
+                <Popular items={popular} onClick={k => search(k, user)}/>
             </div>
         );
     }

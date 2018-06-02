@@ -1,19 +1,24 @@
 import React from 'react';
+import TextField from 'material-ui/TextField';
+
+const getErrorText = validation => {
+    if (validation === 1) {
+        return "Keyword has to be at least 2 symbols long"
+    }
+    if (validation === 2) {
+        return "Keyword contains unsupported symbol(s)\n@#$%^&*!`~+={}|\\?/:;"
+    }
+};
 
 const SearchField = ({text, onChange, validationVisible}) => (
     <div className="search-field">
-        {validationVisible === 1 &&
-        <p className="search-field-validation">Keyword has to be at least 2 symbols long</p>}
-        {validationVisible === 2 && <p className="search-field-validation">
-            Keyword contains unsupported symbol(s)<br/>
-            @#$%^&*!`~+={}|\?/:;
-        </p>}
-        <input
+        <TextField
             className="search-input"
-            placeholder='Enter you search keyword'
-            type="text"
+            hintText=""
+            floatingLabelText="Enter you search keyword"
             value={text}
             onChange={e => onChange(e.target.value)}
+            errorText={getErrorText(validationVisible)}
         />
     </div>
 );

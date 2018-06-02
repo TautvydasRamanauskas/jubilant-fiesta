@@ -1,12 +1,16 @@
 import React from 'react';
+import RaisedButton from 'material-ui/RaisedButton';
 
-const Button = ({text, onClick}) => (
+const Button = ({text, onClick, primary, secondary, icon, className}) => (
     <div>
-        <input
-            className="action-button"
-            type="button"
-            value={text}
+        <RaisedButton
+            className={className ? className : "action-button"}
+            labelPosition="before"
+            label={text}
+            primary={!!primary}
+            secondary={!!secondary}
             onClick={e => onClick()}
+            icon={icon}
         />
     </div>
 );

@@ -5,6 +5,7 @@ import './index.css';
 import registerServiceWorker from './registerServiceWorker';
 import {Provider} from 'react-redux';
 import store from './store';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import App from './App';
 import AuthRoute from './components/AuthRoute';
 import Login from './components/Login';
@@ -19,17 +20,20 @@ const noHeaderLinks = [
 
 ReactDOM.render(
     <Provider store={store}>
-        <Router>
-            <div>
-                {/*<Route component={HeaderWrapper}/>*/}
-                <Switch>
-                    <AuthRoute path="/" exact component={App}/>
-                    <Route path="/login" component={Login}/>
-                    <Redirect to="/"/>
-                </Switch>
-            </div>
-        </Router>
-    </Provider>,
+        <MuiThemeProvider>
+            <Router>
+                <div>
+                    {/*<Route component={HeaderWrapper}/>*/}
+                    <Switch>
+                        <AuthRoute path="/" exact component={App}/>
+                        <Route path="/login" component={Login}/>
+                        <Redirect to="/"/>
+                    </Switch>
+                </div>
+            </Router>
+        </MuiThemeProvider>
+    </Provider>
+    ,
     document.getElementById('root')
 );
 registerServiceWorker();

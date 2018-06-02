@@ -1,12 +1,13 @@
 import React from 'react';
+import {TableRow, TableRowColumn} from 'material-ui/Table';
 
 const Reference = ({reference}) => (
-    <tr className="reference">
-        <td/>
-        <td colSpan="5">
+    <TableRow className="reference">
+        <TableRowColumn/>
+        <TableRowColumn colSpan="5">
             <a href={reference}>{reference}</a>
-        </td>
-    </tr>
+        </TableRowColumn>
+    </TableRow>
 );
 
 export default Reference
