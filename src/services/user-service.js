@@ -1,8 +1,11 @@
 import callApi from './call-service';
 
 export default {
-    login(userId, token) {
-        return callApi(`/user/`, 'POST', {userId, token});
+    login(response) {
+        return callApi(`/user/`, 'POST', {
+            ...response,
+            picture: response.picture.data.url,
+        });
     },
 
     logout() {

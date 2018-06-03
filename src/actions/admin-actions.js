@@ -1,6 +1,6 @@
 import AdminService from '../services/admin-service';
 
-export const fetchLimits = options => dispatch => {
+export const fetchLimits = () => dispatch => {
     AdminService.fetchLimits()
         .then(response => {
             if (response.ok) {
@@ -17,6 +17,27 @@ export const fetchLimits = options => dispatch => {
         .catch(err => {
             if (err) {
                 alert('Failed to fetch limits');
+            }
+        });
+};
+
+export const fetchUsers = () => dispatch => {
+    AdminService.fetchUsers()
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            }
+            throw response;
+        })
+        .then(json => {
+            dispatch({
+                type: "USERS_FETCHED",
+                users: json,
+            });
+        })
+        .catch(err => {
+            if (err) {
+                alert('Failed to fetch users');
             }
         });
 };

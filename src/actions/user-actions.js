@@ -1,9 +1,7 @@
 import UserService from '../services/user-service';
 
 export const login = (response) => dispatch => {
-    const {accessToken, userID} = response;
-
-    UserService.login(userID, accessToken)
+    UserService.login(response)
         .then(response => {
             if (response.ok) {
                 return response.json();

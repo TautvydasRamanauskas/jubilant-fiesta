@@ -17,7 +17,8 @@ const initialState = {
         limits: {
             google: 0,
             yandex: 0,
-        }
+        },
+        users: [],
     },
     options: {
         neuralNetwork: true,
