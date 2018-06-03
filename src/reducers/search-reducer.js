@@ -1,7 +1,7 @@
-const compareResults = ({count: countOne, voteValue: voteValueOne, result: resultOne},
-                        {count: countTwo, voteValue: voteValueTwo, result: resultTwo}) => {
-    const ratingOne = countOne + voteValueOne;
-    const ratingTwo = countTwo + voteValueTwo;
+const compareResults = ({references: referencesOne, voteValue: voteValueOne, result: resultOne},
+                        {references: referencesTwo, voteValue: voteValueTwo, result: resultTwo}) => {
+    const ratingOne = referencesOne.length + voteValueOne;
+    const ratingTwo = referencesTwo.length + voteValueTwo;
     if (ratingOne === ratingTwo) {
         return resultOne.localeCompare(resultTwo);
     }

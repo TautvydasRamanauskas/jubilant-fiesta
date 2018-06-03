@@ -26,7 +26,7 @@ const initialState = {
             numbers: true,
         },
         rating: {
-            minRating: 2,
+            minRating: 3,
             ratingDialogOpen: false,
         },
     },

@@ -22,7 +22,7 @@ class Search extends Component {
         return (
             <div className="page">
                 <SearchField text={searchText} onChange={changeSearchText} validationVisible={textValidationVisible}/>
-                <SearchButton loading={loading} search={() => search(searchText, user)}/>
+                <SearchButton className="search-button" loading={loading} search={() => search(searchText, user)}/>
                 <Results linkEnable={true}/>
                 <Popular items={popular} onClick={k => search(k, user)}/>
             </div>

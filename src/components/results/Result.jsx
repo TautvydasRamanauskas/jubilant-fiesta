@@ -7,10 +7,10 @@ import BookmarkBorder from 'material-ui/svg-icons/action/bookmark-border';
 import {pink500 as red} from 'material-ui/styles/colors';
 
 const Result = ({number, result, onBookmarkClick, addVote, removeVote}) => {
-    const {result: title, count, voteValue, bookmark, personalVote} = result;
-    const rating = count + voteValue;
+    const {result: title, references, voteValue, bookmark, personalVote} = result;
+    const rating = references.length + voteValue;
     const userVotes = voteValue ? `(${voteValue > 0 ? '+' : ''}${voteValue})` : '';
-    const referencesRows = result.references.map(r => <Reference reference={r}/>);
+    const referencesRows = references.map(r => <Reference reference={r}/>);
     return ([
         <TableRow className="result-row">
             <TableRowColumn align="center">

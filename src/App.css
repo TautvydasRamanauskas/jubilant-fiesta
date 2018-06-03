@@ -8,6 +8,10 @@ body {
     margin-top: 5%;
 }
 
+.search-button {
+    display: block;
+}
+
 .search-field {
     margin: 10px;
 }
