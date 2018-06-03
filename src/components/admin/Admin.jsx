@@ -5,11 +5,12 @@ import * as actions from '../../actions/admin-actions';
 import Divider from 'material-ui/Divider';
 import {Avatar, List, ListItem, Paper, Subheader} from "material-ui";
 import ActionGrade from 'material-ui/svg-icons/action/grade';
+import SearchIcon from 'material-ui/svg-icons/action/search';
 import SaveButton from "../options/SaveButton";
 
 class Admin extends Component {
     render() {
-        const {googleLimit, yandexLimit, users} = this.props;
+        const {googleLimit, yandexLimit, users, searches} = this.props;
         const {changeLevel} = this.props;
         return (
             <Paper className="options" zDepth={5}>
@@ -24,15 +25,21 @@ class Admin extends Component {
                     {users.map(u => <User user={u} changeLevel={changeLevel}/>)}
                 </List>
                 <Divider/>
+                <List>
+                    <Subheader>Searches</Subheader>
+                    {searches.map(s => <Search search={s}/>)}
+                </List>
+                <Divider/>
                 <SaveButton/>
             </Paper>
         );
     }
 
     componentDidMount() {
-        const {fetchLimits, fetchUsers} = this.props;
+        const {fetchLimits, fetchUsers, fetchSearches} = this.props;
         fetchLimits();
         fetchUsers();
+        fetchSearches();
     }
 }
 
@@ -51,10 +58,22 @@ const User = ({user, changeLevel}) => {
     );
 };
 
+const Search = ({search}) => { // TODO: on click cache delete
+    return (
+        <ListItem
+            key={search.id}
+            primaryText={search.keyword}
+            secondaryText={`Search count: ${search.searchCount}`}
+            leftIcon={<SearchIcon/>}
+        />
+    );
+};
+
 const mapStateToProps = state => ({
     googleLimit: state.admin.limits.google,
     yandexLimit: state.admin.limits.yandex,
     users: state.admin.users,
+    searches: state.admin.searches,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);

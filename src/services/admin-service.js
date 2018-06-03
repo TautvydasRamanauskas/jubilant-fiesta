@@ -9,6 +9,10 @@ export default {
         return callApi(`/admin/users/`, 'GET');
     },
 
+    fetchSearches() {
+        return callApi(`/admin/searches/`, 'GET');
+    },
+
     updateLevel(userId, level) {
         return callApi(`/admin/level/`, 'POST', {userId, level});
     },

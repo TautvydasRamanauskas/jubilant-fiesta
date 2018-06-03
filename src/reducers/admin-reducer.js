@@ -8,6 +8,11 @@ const usersFetched = (state, {users}) => ({
     users,
 });
 
+const searchesFetched = (state, {searches}) => ({
+    ...state,
+    searches,
+});
+
 const levelChange = (state, {userId, level}) => {
     const {users} = state;
     const userIndex = users.findIndex(u => u.id === userId);
@@ -32,6 +37,8 @@ export default (state = {}, action) => {
             return limitsFetched(state, action);
         case 'USERS_FETCHED':
             return usersFetched(state, action);
+        case 'SEARCHES_FETCHED':
+            return searchesFetched(state, action);
         case 'LEVEL_CHANGE':
             return levelChange(state, action);
         default:

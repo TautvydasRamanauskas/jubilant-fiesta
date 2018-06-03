@@ -42,6 +42,27 @@ export const fetchUsers = () => dispatch => {
         });
 };
 
+export const fetchSearches = () => dispatch => {
+    AdminService.fetchSearches()
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            }
+            throw response;
+        })
+        .then(json => {
+            dispatch({
+                type: "SEARCHES_FETCHED",
+                searches: json,
+            });
+        })
+        .catch(err => {
+            if (err) {
+                alert('Failed to fetch searches');
+            }
+        });
+};
+
 export const changeLevel = (userId, level) => dispatch => {
     AdminService.updateLevel(userId, level)
         .then(response => {

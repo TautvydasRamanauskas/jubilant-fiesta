@@ -19,9 +19,10 @@ const initialState = {
             yandex: 0,
         },
         users: [],
+        searches: [],
     },
     options: {
-        neuralNetwork: true,
+        neuralNetwork: false,
         searchEngine: {
             google: true,
             yandex: true,
