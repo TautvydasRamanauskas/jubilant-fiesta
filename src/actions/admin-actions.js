@@ -41,3 +41,23 @@ export const fetchUsers = () => dispatch => {
             }
         });
 };
+
+export const changeLevel = (userId, level) => dispatch => {
+    AdminService.updateLevel(userId, level)
+        .then(response => {
+            if (response.ok) {
+                dispatch({
+                    type: "LEVEL_CHANGE",
+                    userId,
+                    level,
+                });
+            } else {
+                throw response;
+            }
+        })
+        .catch(err => {
+            if (err) {
+                alert('Failed to update user level');
+            }
+        });
+};

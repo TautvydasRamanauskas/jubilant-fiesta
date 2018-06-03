@@ -4,11 +4,13 @@ import {bindActionCreators} from 'redux';
 import * as actions from '../../actions/admin-actions';
 import Divider from 'material-ui/Divider';
 import {Avatar, List, ListItem, Paper, Subheader} from "material-ui";
+import ActionGrade from 'material-ui/svg-icons/action/grade';
 import SaveButton from "../options/SaveButton";
 
 class Admin extends Component {
     render() {
         const {googleLimit, yandexLimit, users} = this.props;
+        const {changeLevel} = this.props;
         return (
             <Paper className="options" zDepth={5}>
                 <List>
@@ -19,7 +21,7 @@ class Admin extends Component {
                 <Divider/>
                 <List>
                     <Subheader>Users</Subheader>
-                    {users.map(u => <User user={u}/>)}
+                    {users.map(u => <User user={u} changeLevel={changeLevel}/>)}
                 </List>
                 <Divider/>
                 <SaveButton/>
@@ -34,14 +36,20 @@ class Admin extends Component {
     }
 }
 
-const User = ({user}) => (
-    <ListItem
-        key={user.id}
-        primaryText={user.name}
-        secondaryText={user.email}
-        rightAvatar={<Avatar src={user.picture}/>}
-    />
-);
+const User = ({user, changeLevel}) => {
+    const adminIcon = user.level === 1 ? <ActionGrade/> : null;
+    return (
+        <ListItem
+            key={user.id}
+            onClick={e => changeLevel(user.id, user.level === 0 ? 1 : 0)}
+            primaryText={user.name}
+            secondaryText={user.email}
+            insetChildren={!adminIcon}
+            leftIcon={adminIcon}
+            rightAvatar={<Avatar src={user.picture}/>}
+        />
+    );
+};
 
 const mapStateToProps = state => ({
     googleLimit: state.admin.limits.google,

@@ -8,4 +8,8 @@ export default {
     fetchUsers() {
         return callApi(`/admin/users/`, 'GET');
     },
+
+    updateLevel(userId, level) {
+        return callApi(`/admin/level/`, 'POST', {userId, level});
+    },
 }
