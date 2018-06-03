@@ -6,12 +6,13 @@ import registerServiceWorker from './registerServiceWorker';
 import {Provider} from 'react-redux';
 import store from './store';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import App from './App';
+import App from './components/search/App';
 import AuthRoute from './components/AuthRoute';
 import Login from './components/user/Login';
 import Toolbar from "./components/Toolbar";
 import Options from "./components/options/Options";
 import Link from "./components/link/Link";
+import Bookmarks from "./components/bookmarks/Bookmarks";
 
 const noHeaderLinks = [
     '/login',
@@ -31,6 +32,7 @@ ReactDOM.render(
                     <Switch>
                         <AuthRoute path="/" exact component={App}/>
                         <Route path="/login" component={Login}/>
+                        <AuthRoute path="/bookmarks" exact component={Bookmarks}/>
                         <AuthRoute path="/link" exact component={Link}/>
                         <AuthRoute path="/options" exact component={Options}/>
                         <Redirect to="/"/>

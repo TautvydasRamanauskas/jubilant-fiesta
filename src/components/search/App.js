@@ -1,15 +1,12 @@
 import React, {Component} from 'react';
-import LoadingIndicator from 'react-loading-indicator';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import './App.css';
-import * as actions from './actions/search-actions';
-import Popular from "./components/search/Popular";
-import Results from "./components/results/Results";
-import Button from "./components/Button";
-import SearchField from "./components/search/SearchField";
-import SearchIcon from 'material-ui/svg-icons/action/search';
-import Bookmark from 'material-ui/svg-icons/action/bookmark';
+import '../../App.css';
+import * as actions from '../../actions/search-actions';
+import Popular from "../../components/search/Popular";
+import Results from "../../components/results/Results";
+import SearchField from "../../components/search/SearchField";
+import SearchButton from "./SearchButton";
 
 class Search extends Component {
     render() {
@@ -18,24 +15,14 @@ class Search extends Component {
             textValidationVisible,
             changeSearchText,
             search,
-            bookmarks,
             popular,
             loading,
             user,
         } = this.props;
         return (
             <div className="page">
-                <SearchField text={searchText} onChange={changeSearchText}
-                             validationVisible={textValidationVisible}/>
-
-                {
-                    loading ?
-                        <LoadingIndicator/> :
-                        <Button text="Search" onClick={() => search(searchText, user)} primary={true}
-                                icon={<SearchIcon/>}/>
-                }
-
-                <Button text="Bookmarks" onClick={() => bookmarks(user.id)} secondary={true} icon={<Bookmark/>}/>
+                <SearchField text={searchText} onChange={changeSearchText} validationVisible={textValidationVisible}/>
+                <SearchButton loading={loading} search={() => search(searchText, user)}/>
                 <Results linkEnable={true}/>
                 <Popular items={popular} onClick={k => search(k, user)}/>
             </div>
