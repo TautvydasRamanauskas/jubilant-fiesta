@@ -2,10 +2,11 @@ import React from 'react';
 import FacebookLogin from 'react-facebook-login';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import * as actionCreators from '../../actions/user-actions';
+import * as userActions from '../../actions/user-actions';
+import * as optionsActions from '../../actions/options-actions';
 import {Redirect} from "react-router-dom";
 
-const Facebook = ({user, login}) => {
+const Facebook = ({user, login, reset}) => {
     if (!user.id) {
         return (
             <div className="facebook-login">
@@ -18,6 +19,7 @@ const Facebook = ({user, login}) => {
             </div>
         )
     }
+    reset(user.options);
     return <Redirect to="/"/>
 };
 
@@ -25,6 +27,6 @@ const mapStateToProps = state => ({
     user: state.user,
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators(actionCreators, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators(Object.assign({}, userActions, optionsActions), dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Facebook);

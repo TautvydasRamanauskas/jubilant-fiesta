@@ -5,8 +5,10 @@ import Rating from "./Rating";
 import SearchEngines from "./SearchEngines";
 import TextRules from "./TextRules";
 import NeuralNetwork from "./NeuralNetwork";
+import ResetButton from "./ResetButton";
+import SaveButton from "./SaveButton";
 
-const Options = () => (
+const Options = ({userOptions, save, reset}) => (
     <Paper className="options" zDepth={5}>
         <SearchEngines/>
         <Divider/>
@@ -15,6 +17,9 @@ const Options = () => (
         <NeuralNetwork/>
         <Divider/>
         <Rating/>
+        <Divider/>
+        <SaveButton/>
+        <ResetButton/>
     </Paper>
 );
 

@@ -28,3 +28,22 @@ export const logout = () => {
         type: 'LOGOUT_SUCCESS',
     };
 };
+
+export const updateOptions = options => dispatch => {
+    UserService.updateOptions(options)
+        .then(response => {
+            if (response.ok) {
+                dispatch({
+                    type: 'OPTIONS_UPDATE',
+                    options,
+                });
+            } else {
+                throw response;
+            }
+        })
+        .catch(err => {
+            if (err) {
+                alert('Failed to update options');
+            }
+        });
+};

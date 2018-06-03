@@ -8,4 +8,8 @@ export default {
     logout() {
         return callApi(`/user/`, 'DELETE');
     },
+
+    updateOptions(options) {
+        return callApi(`/user/options/`, 'PUT', {...options});
+    },
 }

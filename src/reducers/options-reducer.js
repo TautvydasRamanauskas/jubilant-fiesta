@@ -7,10 +7,36 @@ const changeNeuralNetworkState = (state, {state: neuralNetwork}) => ({
     neuralNetwork,
 });
 
+const resetOptions = (state, {
+    options: {
+        useNeuralNetwork, useGoogle, useYandex, useCache, useTextRuleReview,
+        useTextRuleNumber, useTextRuleParenthesis, minRating
+    }
+}) => ({
+    ...state,
+    neuralNetwork: useNeuralNetwork,
+    searchEngine: {
+        google: useGoogle,
+        yandex: useYandex,
+        cache: useCache,
+    },
+    textRules: {
+        parenthesis: useTextRuleParenthesis,
+        review: useTextRuleReview,
+        numbers: useTextRuleNumber,
+    },
+    rating: {
+        minRating: minRating,
+        ratingDialogOpen: false,
+    },
+});
+
 export default (state = {}, action) => {
     switch (action.type) {
         case "NEURAL_NETWORK_CHANGE":
             return changeNeuralNetworkState(state, action);
+        case "OPTIONS_RESET":
+            return resetOptions(state, action);
         default:
             return {
                 ...state,

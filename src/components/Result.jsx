@@ -22,8 +22,10 @@ const Result = ({number, result, onBookmarkClick, addVote, removeVote}) => {
             <TableRowColumn>
                 Rating: {rating} {userVotes}
             </TableRowColumn>
-            <TableRowColumn onClick={e => onBookmarkClick(result)}>
-                {bookmark ? <Bookmark color={red}/> : <BookmarkBorder color={red}/>}
+            <TableRowColumn>
+                {bookmark ?
+                    <Bookmark color={red} onClick={e => onBookmarkClick(result)}/> :
+                    <BookmarkBorder color={red} onClick={e => onBookmarkClick(result)}/>}
             </TableRowColumn>
             <Vote
                 result={result}

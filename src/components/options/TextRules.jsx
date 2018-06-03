@@ -9,7 +9,7 @@ import OptionsItem from "./OptionsItem";
 const TextRules = ({
                        parenthesisState, changeParenthesis,
                        reviewState, changeReview,
-                       numbersState, changeNumbers
+                       numbersState, changeNumbers, user
                    }) => (
     <List>
         <Subheader>Text Rules</Subheader>

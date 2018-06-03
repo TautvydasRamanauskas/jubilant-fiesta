@@ -49,7 +49,7 @@ class Search extends Component {
                 <Button text="Bookmarks" onClick={() => bookmarks(user.id)} secondary={true} icon={<Bookmark/>}/>
                 {results.length > 0 && <Results
                     results={results}
-                    onBookmarkClick={e => changeBookmark(e, user)}
+                    onBookmarkClick={r => changeBookmark(r, user)}
                     addVote={v => addVote({...v, user})}
                     removeVote={v => removeVote({...v, user})}
                     onGenerateReport={() => generateReport(results)}
