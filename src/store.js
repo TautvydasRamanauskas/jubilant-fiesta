@@ -13,6 +13,12 @@ const initialState = {
         loading: false,
     },
     user: {},
+    admin: {
+        limits: {
+            google: 0,
+            yandex: 0,
+        }
+    },
     options: {
         neuralNetwork: true,
         searchEngine: {

@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import '../../App.css';
 import * as actions from '../../actions/search-actions';
 import Popular from "../../components/search/Popular";
 import Results from "../../components/results/Results";

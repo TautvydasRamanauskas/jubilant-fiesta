@@ -8,7 +8,7 @@ import NeuralNetwork from "./NeuralNetwork";
 import ResetButton from "./ResetButton";
 import SaveButton from "./SaveButton";
 
-const Options = ({userOptions, save, reset}) => (
+const Options = () => (
     <Paper className="options" zDepth={5}>
         <SearchEngines/>
         <Divider/>

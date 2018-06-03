@@ -13,6 +13,7 @@ import Toolbar from "./components/Toolbar";
 import Options from "./components/options/Options";
 import Link from "./components/link/Link";
 import Bookmarks from "./components/bookmarks/Bookmarks";
+import Admin from "./components/admin/Admin";
 
 const noHeaderLinks = [
     '/login',
@@ -34,13 +35,13 @@ ReactDOM.render(
                         <Route path="/login" component={Login}/>
                         <AuthRoute path="/bookmarks" exact component={Bookmarks}/>
                         <AuthRoute path="/link" exact component={Link}/>
+                        <AuthRoute path="/admin" exact component={Admin}/>
                         <AuthRoute path="/options" exact component={Options}/>
                         <Redirect to="/"/>
                     </Switch>
                 </div>
             </Router>
         </MuiThemeProvider>
-    </Provider>
-    ,
+    </Provider>,
     document.getElementById('root')
 );

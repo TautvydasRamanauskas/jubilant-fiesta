@@ -6,6 +6,7 @@ import FlatButton from 'material-ui/FlatButton';
 import OptionsIcon from 'material-ui/svg-icons/action/settings';
 import SearchIcon from 'material-ui/svg-icons/action/search';
 import LinkIcon from 'material-ui/svg-icons/content/link';
+import AdministratorIcon from 'material-ui/svg-icons/action/build';
 import BookmarkIcon from 'material-ui/svg-icons/action/bookmark';
 import {Toolbar, ToolbarGroup, ToolbarSeparator} from 'material-ui/Toolbar';
 import {withRouter} from 'react-router-dom'
@@ -15,7 +16,8 @@ const iconStyle = {
 };
 
 const route = (history, target, reset) => {
-    if (history.location.pathname !== target) {
+    const {location} = history;
+    if (location && location.pathname !== target) {
         reset();
     }
     history.push(target);
@@ -24,7 +26,7 @@ const route = (history, target, reset) => {
 const routeWrapper = (history, reset) => target => route(history, target, reset);
 
 const ToolbarHeader = withRouter(
-    ({history, resetResults}) => {
+    ({history, user, resetResults}) => {
         const route = routeWrapper(history, resetResults);
         return (
             <Toolbar>
@@ -41,6 +43,7 @@ const ToolbarHeader = withRouter(
                 </ToolbarGroup>
                 <ToolbarGroup>
                     <ToolbarSeparator className="toolbar-separator"/>
+                    <AdministratorToolbar user={user} route={route}/>
                     <FlatButton label="Options" labelPosition="before" onClick={e => route('/options')}>
                         <OptionsIcon style={iconStyle}/>
                     </FlatButton>
@@ -50,6 +53,21 @@ const ToolbarHeader = withRouter(
     }
 );
 
+const AdministratorToolbar = ({user: {level}, route}) => {
+    if (level === 1) {
+        return (
+            <FlatButton label="Administrator" labelPosition="before" onClick={e => route('/admin')}>
+                <AdministratorIcon style={iconStyle}/>
+            </FlatButton>
+        );
+    }
+    return null;
+};
+
+const mapStateToProps = state => ({
+    user: state.user,
+});
+
 const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
 
-export default connect(null, mapDispatchToProps)(ToolbarHeader);
+export default connect(mapStateToProps, mapDispatchToProps)(ToolbarHeader);
