@@ -13,6 +13,11 @@ export const changeLink = newLink => ({
     newLink,
 });
 
+export const resetResults = () => ({
+    type: 'RESULTS',
+    results: [],
+});
+
 export const changeBookmark = (entry, user) => dispatch => {
     const {bookmark} = entry;
     const promise = bookmark ? BookmarkService.removeBookmark(entry, user) : BookmarkService.addBookmark(entry, user);

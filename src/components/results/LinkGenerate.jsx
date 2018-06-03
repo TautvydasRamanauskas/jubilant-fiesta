@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from "./Button";
+import Button from "../Button";
 import LinkImage from 'material-ui/svg-icons/content/link';
 import TextField from 'material-ui/TextField';
 

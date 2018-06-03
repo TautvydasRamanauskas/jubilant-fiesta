@@ -11,6 +11,7 @@ import AuthRoute from './components/AuthRoute';
 import Login from './components/user/Login';
 import Toolbar from "./components/Toolbar";
 import Options from "./components/options/Options";
+import Link from "./components/link/Link";
 
 const noHeaderLinks = [
     '/login',
@@ -30,6 +31,7 @@ ReactDOM.render(
                     <Switch>
                         <AuthRoute path="/" exact component={App}/>
                         <Route path="/login" component={Login}/>
+                        <AuthRoute path="/link" exact component={Link}/>
                         <AuthRoute path="/options" exact component={Options}/>
                         <Redirect to="/"/>
                     </Switch>

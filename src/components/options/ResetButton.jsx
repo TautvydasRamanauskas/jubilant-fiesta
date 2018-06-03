@@ -15,7 +15,9 @@ const ResetButton = ({userOptions, reset}) => (
     />
 );
 
-const mapStateToProps = state => ({userOptions: state.user.options});
+const mapStateToProps = state => ({
+    userOptions: state.user.options
+});
 
 const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
 
