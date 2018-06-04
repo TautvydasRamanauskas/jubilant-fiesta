@@ -63,6 +63,48 @@ export const fetchSearches = () => dispatch => {
         });
 };
 
+export const fetchLinksCount = () => dispatch => {
+    AdminService.fetchLinksCount()
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            }
+            throw response;
+        })
+        .then(json => {
+            dispatch({
+                type: "LINKS_COUNT_FETCHED",
+                count: json,
+            });
+        })
+        .catch(err => {
+            if (err) {
+                alert('Failed to fetch links count');
+            }
+        });
+};
+
+export const fetchBookmarksCount = () => dispatch => {
+    AdminService.fetchBookmarksCount()
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            }
+            throw response;
+        })
+        .then(json => {
+            dispatch({
+                type: "BOOKMARKS_COUNT_FETCHED",
+                count: json,
+            });
+        })
+        .catch(err => {
+            if (err) {
+                alert('Failed to fetch bookmarks count');
+            }
+        });
+};
+
 export const changeLevel = (userId, level) => dispatch => {
     AdminService.updateLevel(userId, level)
         .then(response => {
@@ -103,3 +145,19 @@ export const cleanCache = keyword => dispatch => {
             }
         });
 };
+
+export const openLinksRemove = () => ({
+    type: 'LINKS_REMOVE_OPEN',
+});
+
+export const closeLinksRemove = () => ({
+    type: 'LINKS_REMOVE_CLOSE',
+});
+
+export const openBookmarksRemove = () => ({
+    type: 'BOOKMARKS_REMOVE_OPEN',
+});
+
+export const closeBookmarksRemove = () => ({
+    type: 'BOOKMARKS_REMOVE_CLOSE',
+});

@@ -20,6 +20,14 @@ const initialState = {
         },
         users: [],
         searches: [],
+        links: {
+            confirmDeleteLinks: false,
+            count: 0,
+        },
+        bookmarks: {
+            confirmDeleteBookmarks: false,
+            count: 0,
+        },
     },
     options: {
         neuralNetwork: false,

@@ -13,6 +13,14 @@ export default {
         return callApi(`/admin/searches/`, 'GET');
     },
 
+    fetchLinksCount() {
+        return callApi(`/admin/links/`, 'GET');
+    },
+
+    fetchBookmarksCount() {
+        return callApi(`/admin/bookmarks/`, 'GET');
+    },
+
     updateLevel(userId, level) {
         return callApi(`/admin/level/`, 'POST', {userId, level});
     },
