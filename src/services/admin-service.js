@@ -16,4 +16,8 @@ export default {
     updateLevel(userId, level) {
         return callApi(`/admin/level/`, 'POST', {userId, level});
     },
+
+    cleanCache(keyword) {
+        return callApi(`/admin/searches/${keyword}`, 'DELETE');
+    },
 }

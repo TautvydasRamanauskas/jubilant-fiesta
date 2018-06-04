@@ -58,13 +58,14 @@ const User = ({user, changeLevel}) => {
     );
 };
 
-const Search = ({search}) => { // TODO: on click cache delete
+const Search = ({search}) => {
     return (
         <ListItem
             key={search.id}
             primaryText={search.keyword}
-            secondaryText={`Search count: ${search.searchCount}`}
+            secondaryText={`Searches count: ${search.searchCount} | Results count: ${search.resultsCount}`}
             leftIcon={<SearchIcon/>}
+            // rightIcon={<DeleteIcon onClick={e => cleanCache(search.keyword)}/>}
         />
     );
 };

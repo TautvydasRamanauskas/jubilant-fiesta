@@ -5,6 +5,7 @@ const call = (endpoint, method, data) => {
         body: JSON.stringify(data),
         headers: {
             'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
             'Authorization': 'Basic YzYxM2FmZGItODhiMi00OWI5LThlNWEtY2UyMjRmMDcyMmNjOjllZTEyNDhmLWNlYWMtNGUzYS1hODg2LWE4YWYzNDA4NTMxNg==',
         },
         method,
