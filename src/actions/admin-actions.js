@@ -146,6 +146,44 @@ export const cleanCache = keyword => dispatch => {
         });
 };
 
+export const deleteLinks = () => dispatch => {
+    AdminService.deleteLinks()
+        .then(response => {
+            if (response.ok) {
+                dispatch({
+                    type: "LINKS_COUNT_FETCHED",
+                    count: 0,
+                });
+            } else {
+                throw response;
+            }
+        })
+        .catch(err => {
+            if (err) {
+                alert('Failed to delete links');
+            }
+        });
+};
+
+export const deleteBookmarks = () => dispatch => {
+    AdminService.deleteBookmarks()
+        .then(response => {
+            if (response.ok) {
+                dispatch({
+                    type: "BOOKMARKS_COUNT_FETCHED",
+                    count: 0,
+                });
+            } else {
+                throw response;
+            }
+        })
+        .catch(err => {
+            if (err) {
+                alert('Failed to delete bookmarks');
+            }
+        });
+};
+
 export const openLinksRemove = () => ({
     type: 'LINKS_REMOVE_OPEN',
 });

@@ -12,7 +12,7 @@ import Button from "../Button";
 class Admin extends Component {
     render() {
         const {googleLimit, yandexLimit, users, searches, linksRemove, linksCount, bookmarksRemove, bookmarksCount} = this.props;
-        const {changeLevel, openLinksRemove, closeLinksRemove, openBookmarksRemove, closeBookmarksRemove} = this.props;
+        const {changeLevel, openLinksRemove, closeLinksRemove, openBookmarksRemove, closeBookmarksRemove, deleteLinks, deleteBookmarks} = this.props;
         return (
             <Paper className="options" zDepth={5}>
                 <List>
@@ -35,7 +35,7 @@ class Admin extends Component {
                     buttonText={`Clean Links (${linksCount})`}
                     buttonClick={openLinksRemove}
                     dialogTitle="Do you really want to delete all your links?"
-                    dialogOk={closeLinksRemove}
+                    dialogOk={deleteLinks}
                     dialogCancel={closeLinksRemove}
                     dialogOpen={linksRemove}
                 />
@@ -43,7 +43,7 @@ class Admin extends Component {
                     buttonText={`Clean Bookmarks (${bookmarksCount})`}
                     buttonClick={openBookmarksRemove}
                     dialogTitle="Do you really want to delete all your bookmarks?"
-                    dialogOk={closeBookmarksRemove}
+                    dialogOk={deleteBookmarks}
                     dialogCancel={closeBookmarksRemove}
                     dialogOpen={bookmarksRemove}
                 />
@@ -110,18 +110,24 @@ const ClearButton = ({text, onClick}) => (
     />
 );
 
-const ConfirmationDialog = ({title, ok, cancel, open}) => (
-    <Dialog
-        title={title}
-        actions={[
-            <FlatButton label="Ok" primary={true} keyboardFocused={true} onClick={e => ok()}/>,
-            <FlatButton label="Cancel" secondary={true} onClick={e => cancel()}/>,
-        ]}
-        modal={false}
-        open={open}
-        onRequestClose={e => cancel()}
-    />
-);
+const ConfirmationDialog = ({title, ok, cancel, open}) => {
+    const onOk = () => {
+        ok();
+        cancel();
+    };
+    return (
+        <Dialog
+            title={title}
+            actions={[
+                <FlatButton label="Ok" primary={true} keyboardFocused={true} onClick={e => onOk()}/>,
+                <FlatButton label="Cancel" secondary={true} onClick={e => cancel()}/>,
+            ]}
+            modal={false}
+            open={open}
+            onRequestClose={e => cancel()}
+        />
+    )
+};
 
 const mapStateToProps = state => ({
     googleLimit: state.admin.limits.google,
