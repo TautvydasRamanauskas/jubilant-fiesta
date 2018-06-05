@@ -7,6 +7,7 @@ const initialState = {
         text: '',
         textValidationVisible: 0,
         link: '',
+        resultsFetched: false,
         results: [],
         generatedLink: '',
         popular: [],

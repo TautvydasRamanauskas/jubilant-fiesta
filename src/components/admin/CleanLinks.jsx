@@ -10,7 +10,7 @@ class CleanLinks extends Component {
         const {openLinksRemove, closeLinksRemove, deleteLinks} = this.props;
         return (
             <CleanAction
-                buttonText={`Clean Links (${linksCount})`}
+                buttonText={`Clean Links [${linksCount}]`}
                 buttonClick={openLinksRemove}
                 dialogTitle="Do you really wish to delete all your links?"
                 dialogOk={deleteLinks}

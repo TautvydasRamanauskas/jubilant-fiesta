@@ -18,6 +18,7 @@ const style = {
 
 const Results = ({
                      linkEnable,
+                     resultsFetched,
                      results,
                      generatedLink,
                      user,
@@ -51,10 +52,14 @@ const Results = ({
             </div>
         )
     }
+    if (resultsFetched) {
+        return <h3>No results found</h3>;
+    }
     return null;
 };
 
 const mapStateToProps = state => ({
+    resultsFetched: state.search.resultsFetched,
     results: state.search.results,
     generatedLink: state.search.generatedLink,
     user: state.user,

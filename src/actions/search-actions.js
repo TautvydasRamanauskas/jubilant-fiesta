@@ -16,6 +16,7 @@ export const changeLink = newLink => ({
 export const resetResults = () => ({
     type: 'RESULTS',
     results: [],
+    resultsFetched: false,
 });
 
 export const changeBookmark = (entry, user) => dispatch => {
@@ -68,6 +69,7 @@ export const search = (keyword, user) => dispatch => {
             dispatch({
                 type: 'RESULTS',
                 results: json,
+                resultsFetched: true,
             });
         })
 };
@@ -100,6 +102,7 @@ export const bookmarks = (userId) => dispatch => {
             dispatch({
                 type: 'RESULTS',
                 results: json,
+                resultsFetched: true,
             });
         })
 };
@@ -171,6 +174,7 @@ export const links = (link, user) => dispatch => {
             dispatch({
                 type: 'RESULTS',
                 results: json,
+                resultsFetched: true,
             });
         })
 };

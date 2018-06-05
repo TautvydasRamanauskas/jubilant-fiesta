@@ -101,13 +101,14 @@ const removeVote = (state, {vote}) => {
     };
 };
 
-const results = (state, {results}) => {
+const results = (state, {results, resultsFetched}) => {
     return {
         ...state,
         text: '',
         textValidationVisible: 0,
         link: '',
         generatedLink: '',
+        resultsFetched,
         results: results.sort(compareResults),
         loading: false,
     };

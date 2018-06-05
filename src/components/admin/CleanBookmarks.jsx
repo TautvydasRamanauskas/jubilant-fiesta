@@ -10,7 +10,7 @@ class CleanBookmarks extends Component {
         const {openBookmarksRemove, closeBookmarksRemove, deleteBookmarks} = this.props;
         return (
             <CleanAction
-                buttonText={`Clean Bookmarks (${bookmarksCount})`}
+                buttonText={`Clean Bookmarks [${bookmarksCount}]`}
                 buttonClick={openBookmarksRemove}
                 dialogTitle="Do you really wish to delete all your bookmarks?"
                 dialogOk={deleteBookmarks}
