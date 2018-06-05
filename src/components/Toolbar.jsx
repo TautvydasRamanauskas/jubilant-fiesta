@@ -1,7 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import * as actions from '../actions/search-actions';
+import * as searchActions from '../actions/search-actions';
+import * as optionsActions from '../actions/options-actions';
 import FlatButton from 'material-ui/FlatButton';
 import OptionsIcon from 'material-ui/svg-icons/action/settings';
 import SearchIcon from 'material-ui/svg-icons/action/search';
@@ -26,8 +27,15 @@ const route = (history, target, reset) => {
 const routeWrapper = (history, reset) => target => route(history, target, reset);
 
 const ToolbarHeader = withRouter(
-    ({history, user, resetResults}) => {
-        const route = routeWrapper(history, resetResults);
+    ({history, user, resetResults, reset}) => {
+        const fullReset = () => {
+            const userOptions = user.options;
+            if (userOptions) {
+                reset(userOptions);
+            }
+            resetResults();
+        };
+        const route = routeWrapper(history, fullReset);
         return (
             <Toolbar>
                 <ToolbarGroup firstChild={true}>
@@ -68,6 +76,6 @@ const mapStateToProps = state => ({
     user: state.user,
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators(Object.assign({}, searchActions, optionsActions), dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(ToolbarHeader);
