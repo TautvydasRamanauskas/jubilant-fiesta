@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import * as actions from '../../actions/admin-actions';
+import * as actions from '../../actions/admin-bookmarks-actions';
 import CleanAction from "./CleanAction";
 
 class CleanBookmarks extends Component {
@@ -12,7 +12,7 @@ class CleanBookmarks extends Component {
             <CleanAction
                 buttonText={`Clean Bookmarks (${bookmarksCount})`}
                 buttonClick={openBookmarksRemove}
-                dialogTitle="Do you really want to delete all your bookmarks?"
+                dialogTitle="Do you really wish to delete all your bookmarks?"
                 dialogOk={deleteBookmarks}
                 dialogCancel={closeBookmarksRemove}
                 dialogOpen={bookmarksRemove}

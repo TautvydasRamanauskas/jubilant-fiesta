@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import * as actions from '../../actions/admin-actions';
+import * as actions from '../../actions/admin-searches-actions';
 import {List, Subheader} from "material-ui";
 import Search from "./Search";
 

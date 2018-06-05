@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import * as actions from '../../actions/admin-actions';
+import * as actions from '../../actions/admin-limits-actions';
 import {List, ListItem, Subheader} from "material-ui";
 
 class Limits extends Component {

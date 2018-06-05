@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import * as actions from '../../actions/admin-actions';
+import * as actions from '../../actions/admin-links-actions';
 import CleanAction from "./CleanAction";
 
 class CleanLinks extends Component {
@@ -12,7 +12,7 @@ class CleanLinks extends Component {
             <CleanAction
                 buttonText={`Clean Links (${linksCount})`}
                 buttonClick={openLinksRemove}
-                dialogTitle="Do you really want to delete all your links?"
+                dialogTitle="Do you really wish to delete all your links?"
                 dialogOk={deleteLinks}
                 dialogCancel={closeLinksRemove}
                 dialogOpen={linksRemove}
