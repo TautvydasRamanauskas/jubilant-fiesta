@@ -4,8 +4,7 @@ import {bindActionCreators} from 'redux';
 import * as actions from '../../actions/rating-actions';
 import {List, ListItem} from 'material-ui/List';
 import Subheader from 'material-ui/Subheader';
-import Dialog from 'material-ui/Dialog';
-import {FlatButton, TextField} from "material-ui";
+import RatingDialog from "./RatingDialog";
 
 const Rating = ({minRating, changeMinimalRating, ratingDialogOpen, openRatingDialog}) => (
     <List>
@@ -15,18 +14,12 @@ const Rating = ({minRating, changeMinimalRating, ratingDialogOpen, openRatingDia
             secondaryText={`Select minimal rating (current - ${minRating})`}
             onClick={e => openRatingDialog(true)}
         />
-        <Dialog
-            title="Select minimal rating"
-            actions={[
-                <FlatButton label="Close" primary={true} keyboardFocused={true}
-                            onClick={e => openRatingDialog(false)}/>,
-            ]}
-            modal={false}
-            open={ratingDialogOpen}
-            onRequestClose={e => openRatingDialog(false)}
-        >
-            <TextField value={minRating} type="number" onChange={e => changeMinimalRating(e.target.value)}/>
-        </Dialog>
+        <RatingDialog
+            isOpen={ratingDialogOpen}
+            open={openRatingDialog}
+            rating={minRating}
+            onRatingChange={changeMinimalRating}
+        />
     </List>
 );
 
