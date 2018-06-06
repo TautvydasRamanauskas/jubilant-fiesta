@@ -1,6 +1,7 @@
 import React from 'react';
 import {List} from 'material-ui/List';
 import Subheader from 'material-ui/Subheader';
+import PopularItem from "./PopularItem";
 
 const Popular = ({items, onClick}) => (
     <div className="popular">
