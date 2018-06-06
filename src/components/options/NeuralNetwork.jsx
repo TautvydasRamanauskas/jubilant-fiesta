@@ -9,7 +9,7 @@ import OptionsItem from "./OptionsItem";
 const NeuralNetwork = ({neuralNetworkState, changeNeuralNetwork}) => (
     <List>
         <Subheader>Neural Network</Subheader>
-        <OptionsItem text="Use Neural Network" secondaryText="Uses Neural Network instead of Text Rules"
+        <OptionsItem text="Use Neural Network (Experimental)" secondaryText="Uses Neural Network instead of Text Rules"
                      toggled={neuralNetworkState} onToggle={changeNeuralNetwork}/>
     </List>
 );

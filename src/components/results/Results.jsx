@@ -2,19 +2,9 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as actions from '../../actions/search-actions';
-import Result from "./Result";
-import {Table, TableBody} from 'material-ui/Table';
+import Result from "./ResultCard";
 import GenerateReport from "./GenerateReport";
 import LinkGenerateWrapper from "./LinkGenerateWrapper";
-
-const style = {
-    backgroundColor: 'transparent',
-    color: 'white',
-    width: 'auto',
-    marginLeft: 'auto',
-    marginRight: 'auto',
-    border: '5px solid #e91e63',
-};
 
 const Results = ({
                      linkEnable,
@@ -40,12 +30,10 @@ const Results = ({
             />
         );
         return (
-            <div className="search-results">
-                <Table style={style}>
-                    <TableBody showRowHover={true} stripedRows={true}>
-                        {resultRows}
-                    </TableBody>
-                </Table>
+            <div>
+                <div className="search-results">
+                    {resultRows}
+                </div>
                 <LinkGenerateWrapper enabled={linkEnable} link={generatedLink}
                                      onGenerate={() => generateLink(results)}/>
                 <GenerateReport onClick={e => generateReport(results)}/>

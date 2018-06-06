@@ -1,32 +1,25 @@
 import React from 'react';
-import {TableRowColumn} from 'material-ui/Table';
 import ThumbsUp from 'material-ui/svg-icons/action/thumb-up';
 import ThumbsDown from 'material-ui/svg-icons/action/thumb-down';
-import {pink500 as red} from 'material-ui/styles/colors';
+import {cyan500 as buttonColor} from 'material-ui/styles/colors';
 
 const Vote = ({personalVote, addVote, removeVote}) => {
     switch (personalVote) {
         case 1:
             return (
-                <TableRowColumn colSpan="2" align="center" onClick={e => removeVote({value: 1})}>
-                    <ThumbsUp color={red}/>
-                </TableRowColumn>
+                <ThumbsUp className="card-button" color={buttonColor} onClick={e => removeVote({value: 1})}/>
             );
         case -1:
             return (
-                <TableRowColumn colSpan="2" align="center" onClick={e => removeVote({value: -1})}>
-                    <ThumbsDown color={red}/>
-                </TableRowColumn>
+                <ThumbsDown className="card-button" color={buttonColor} onClick={e => removeVote({value: -1})}/>
             );
         default:
-            return ([
-                <TableRowColumn key="up-vote" onClick={e => addVote({value: 1})}>
-                    <ThumbsUp color={red}/>
-                </TableRowColumn>,
-                <TableRowColumn key="down-vote" onClick={e => addVote({value: -1})}>
-                    <ThumbsDown color={red}/>
-                </TableRowColumn>
-            ]);
+            return (
+                <span>
+                    <ThumbsUp className="card-button" color={buttonColor} onClick={e => addVote({value: 1})}/>
+                    <ThumbsDown className="card-button" color={buttonColor} onClick={e => addVote({value: -1})}/>
+                </span>
+            );
     }
 };
 

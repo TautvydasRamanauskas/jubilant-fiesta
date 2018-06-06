@@ -36,21 +36,18 @@ body {
     margin: 25px;
 }
 
-.search-results td {
-    padding: 5px 10px;
-    color: #e91e63;
+.search-result {
+    margin: 25px auto auto;
+    width: 600px;
+    text-align: left;
 }
 
-.search-results tr:hover {
-    background-color: #00bcd4;
-}
-
-.result-row td {
-    border-top: 3px solid #e91e63;
+.card-button {
+    margin: 5px;
 }
 
 .reference a {
-    color: #e91e63;
+    color: #00bcd4;
     text-decoration: underline;
     font-style: italic;
 }
@@ -62,6 +59,7 @@ body {
 
 .popular {
     display: inline-block;
+    margin: 25px;
 }
 
 .login {
