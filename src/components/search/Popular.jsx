@@ -7,7 +7,7 @@ const Popular = ({items, onClick}) => (
     <div className="popular">
         <List>
             <Subheader>Most popular searches:</Subheader>
-            {items.map((i) => <PopularItem item={i} onClick={onClick}/>)}
+            {items.map((i) => <PopularItem key={i.id} item={i} onClick={onClick}/>)}
         </List>
     </div>
 );

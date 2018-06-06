@@ -11,7 +11,6 @@ const style = {
 
 const PopularItem = ({item, onClick}) => (
     <ListItem
-        key={item.id}
         onClick={e => onClick(item.keyword)}
         primaryText={item.keyword}
         style={style}
