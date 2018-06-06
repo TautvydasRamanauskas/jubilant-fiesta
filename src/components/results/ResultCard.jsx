@@ -1,18 +1,22 @@
 import React from 'react';
 import Reference from "./Reference";
 import Vote from "./Vote";
-import {Card, CardActions, CardText, CardTitle} from 'material-ui/Card';
-import {Divider, Paper} from "material-ui";
+import {Card, CardActions, CardText} from 'material-ui/Card';
+import {CardHeader, Divider, Paper} from "material-ui";
 import BookmarkButton from "./BookmarkButton";
+
+const titleStyle = {
+    fontSize: "1.5em",
+    fontStyle: "bold",
+};
 
 const ResultCard = ({number, result, onBookmarkClick, addVote, removeVote}) => {
     const {result: title, references, voteValue, bookmark, personalVote} = result;
     const rating = references.length + voteValue;
     const userVotes = voteValue ? `(${voteValue > 0 ? '+' : ''}${voteValue})` : '';
-    const referencesRows = references.map(r => <Reference reference={r}/>);
+    const referencesRows = references.map((r, i) => <Reference key={i} reference={r}/>);
     const bookmarkButton = (
         <BookmarkButton
-            className="bookmark-button"
             bookmark={bookmark}
             onClick={e => onBookmarkClick(result)}
         />
@@ -20,8 +24,14 @@ const ResultCard = ({number, result, onBookmarkClick, addVote, removeVote}) => {
     return (
         <Paper className="search-result" zDepth={5}>
             <Card>
-                <CardTitle title={`${number + 1}. ${title}`} subtitle={`Rating: ${rating} ${userVotes}`}
-                           openIcon={bookmarkButton} closeIcon={bookmarkButton} showExpandableButton={true}/>
+                <CardHeader
+                    title={`${number + 1}. ${title}`}
+                    titleStyle={titleStyle}
+                    subtitle={`Rating: ${rating} ${userVotes}`}
+                    showExpandableButton={true}
+                    openIcon={bookmarkButton}
+                    closeIcon={bookmarkButton}
+                />
                 <Divider/>
                 <CardText>
                     {referencesRows}
@@ -29,7 +39,6 @@ const ResultCard = ({number, result, onBookmarkClick, addVote, removeVote}) => {
                 <Divider/>
                 <CardActions>
                     <Vote
-                        className="vote-button"
                         result={result}
                         personalVote={personalVote}
                         addVote={v => addVote({...v, result})}

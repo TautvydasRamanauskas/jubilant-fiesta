@@ -10,7 +10,7 @@ const ConfirmationDialog = ({title, ok, cancel, open}) => {
         <Dialog
             title={title}
             actions={[
-                <FlatButton label="Ok" primary={true} keyboardFocused={true} onClick={e => onOk()}/>,
+                <FlatButton label="Ok" primary={true} onClick={e => onOk()}/>,
                 <FlatButton label="Cancel" secondary={true} onClick={e => cancel()}/>,
             ]}
             modal={false}

@@ -10,7 +10,6 @@ const RatingDialog = ({isOpen, open, rating, onRatingChange}) => (
             <FlatButton
                 label="Close"
                 primary={true}
-                keyboardFocused={true}
                 onClick={e => open(false)}
             />,
         ]}

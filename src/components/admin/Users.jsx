@@ -12,7 +12,7 @@ class Users extends Component {
         return (
             <List>
                 <Subheader>Users</Subheader>
-                {users.map(u => <User user={u} changeLevel={changeLevel}/>)}
+                {users.map(u => <User key={u.id} user={u} changeLevel={changeLevel}/>)}
             </List>
         );
     }

@@ -11,7 +11,7 @@ class Searches extends Component {
         return (
             <List>
                 <Subheader>Searches</Subheader>
-                {searches.map(s => <Search search={s}/>)}
+                {searches.map(s => <Search key={s.id} search={s}/>)}
             </List>
         );
     }

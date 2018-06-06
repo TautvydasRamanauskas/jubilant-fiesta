@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as actions from '../../actions/search-actions';
-import Result from "./ResultCard";
+import ResultCard from "./ResultCard";
 import GenerateReport from "./GenerateReport";
 import LinkGenerateWrapper from "./LinkGenerateWrapper";
 
@@ -20,7 +20,7 @@ const Results = ({
                  }) => {
     if (results.length > 0) {
         const resultRows = results.map((r, i) =>
-            <Result
+            <ResultCard
                 key={r.id}
                 number={i}
                 result={r}

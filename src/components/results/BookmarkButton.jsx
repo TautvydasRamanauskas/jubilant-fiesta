@@ -5,8 +5,8 @@ import {cyan500 as buttonColor} from 'material-ui/styles/colors';
 
 const BookmarkButton = ({bookmark, onClick}) => {
     return bookmark ?
-        <BookmarkIcon className="card-button" color={buttonColor} onClick={onClick}/> :
-        <BookmarkBorderIcon className="card-button" color={buttonColor} onClick={onClick}/>
+        <BookmarkIcon color={buttonColor} onClick={onClick}/> :
+        <BookmarkBorderIcon color={buttonColor} onClick={onClick}/>
 };
 
 export default BookmarkButton
