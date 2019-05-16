@@ -6,12 +6,18 @@ import {List, ListItem, Subheader} from "material-ui";
 
 class Limits extends Component {
     render() {
-        const {googleLimit, yandexLimit} = this.props;
+        const {limits} = this.props;
+        const items = Object.keys(limits).map(searchApi =>
+            <ListItem
+                key={searchApi}
+                primaryText={limits[searchApi] || "Disabled"}
+                secondaryText={`"${searchApi}" score`}
+            />
+        );
         return (
             <List>
-                <Subheader>Limits</Subheader>
-                <ListItem primaryText={`${googleLimit}/100`} secondaryText="Google limit"/>
-                <ListItem primaryText={`${yandexLimit}/10`} secondaryText="Yandex limit"/>
+                <Subheader>Load Balancer's current Search APIs scores</Subheader>
+                {items}
             </List>
         );
     }
@@ -23,8 +29,7 @@ class Limits extends Component {
 }
 
 const mapStateToProps = state => ({
-    googleLimit: state.admin.limits.google,
-    yandexLimit: state.admin.limits.yandex,
+    limits: state.admin.limits,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);

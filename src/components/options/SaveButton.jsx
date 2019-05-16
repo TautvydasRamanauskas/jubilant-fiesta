@@ -7,18 +7,12 @@ import SaveIcon from 'material-ui/svg-icons/content/save';
 
 const createNewOptions = ({
                               neuralNetwork,
-                              searchEngine: {google, yandex, cache},
-                              textRules: {parenthesis, review, numbers},
+                              matcher,
                               rating: {minRating}
                           }, userOptions) => ({
     ...userOptions,
     useNeuralNetwork: neuralNetwork,
-    useGoogle: google,
-    useYandex: yandex,
-    useCache: cache,
-    useTextRuleParenthesis: parenthesis,
-    useTextRuleReview: review,
-    useTextRuleNumber: numbers,
+    matcher: matcher,
     minRating: minRating,
 });
 
@@ -28,7 +22,7 @@ const SaveButton = ({options, userOptions, updateOptions}) => (
         text="Save"
         primary={true}
         icon={<SaveIcon/>}
-        onClick={e => updateOptions(createNewOptions(options, userOptions))}
+        onClick={() => updateOptions(createNewOptions(options, userOptions))}
     />
 );
 

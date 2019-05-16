@@ -8,10 +8,10 @@ import ResetIcon from 'material-ui/svg-icons/action/restore';
 const ResetButton = ({userOptions, reset}) => (
     <Button
         className="options-button"
-        text="Reset"
+        text="Discard Changes"
         secondary={true}
         icon={<ResetIcon/>}
-        onClick={e => reset(userOptions)}
+        onClick={() => reset(userOptions)}
     />
 );
 

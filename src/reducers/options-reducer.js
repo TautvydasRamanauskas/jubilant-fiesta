@@ -1,6 +1,5 @@
 import rating from './rating-reducer'
-import searchEngine from './search-engine-reducer'
-import textRules from './text-rules-reducer'
+import matcher from './matcher-reducer'
 
 const changeNeuralNetworkState = (state, {state: neuralNetwork}) => ({
     ...state,
@@ -9,22 +8,12 @@ const changeNeuralNetworkState = (state, {state: neuralNetwork}) => ({
 
 const resetOptions = (state, {
     options: {
-        useNeuralNetwork, useGoogle, useYandex, useCache, useTextRuleReview,
-        useTextRuleNumber, useTextRuleParenthesis, minRating
+        useNeuralNetwork, matcher, minRating
     }
 }) => ({
     ...state,
     neuralNetwork: useNeuralNetwork,
-    searchEngine: {
-        google: useGoogle,
-        yandex: useYandex,
-        cache: useCache,
-    },
-    textRules: {
-        parenthesis: useTextRuleParenthesis,
-        review: useTextRuleReview,
-        numbers: useTextRuleNumber,
-    },
+    matcher,
     rating: {
         minRating: minRating,
         ratingDialogOpen: false,
@@ -40,8 +29,7 @@ export default (state = {}, action) => {
         default:
             return {
                 ...state,
-                searchEngine: searchEngine(state.searchEngine, action),
-                textRules: textRules(state.textRules, action),
+                matcher: matcher(state.matcher, action),
                 rating: rating(state.rating, action),
             };
     }

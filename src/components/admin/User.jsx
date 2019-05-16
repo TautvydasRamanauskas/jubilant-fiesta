@@ -1,12 +1,32 @@
 import React from 'react';
 import {Avatar, ListItem} from "material-ui";
-import ActionGrade from 'material-ui/svg-icons/action/grade';
+import GradeIcon from 'material-ui/svg-icons/action/grade';
+import AccountIcon from 'material-ui/svg-icons/action/account-circle';
 
-const User = ({user, changeLevel}) => {
-    const adminIcon = user.level === 1 ? <ActionGrade/> : null;
+const LEVELS = {
+    DEFAULT: 0,
+    ADMIN: 1,
+};
+
+const getIcon = (user, currentUser) => {
+    if (currentUser) {
+        return <AccountIcon/>;
+    }
+    if (user.level === LEVELS.ADMIN) {
+        return <GradeIcon/>;
+    }
+    return null;
+};
+
+const User = ({user, changeLevel, currentUser}) => {
+    const adminIcon = getIcon(user, currentUser);
+    const onClick = currentUser ?
+        () => {
+        } :
+        () => changeLevel(user.id, user.level === LEVELS.DEFAULT ? LEVELS.ADMIN : LEVELS.DEFAULT);
     return (
         <ListItem
-            onClick={e => changeLevel(user.id, user.level === 0 ? 1 : 0)}
+            onClick={onClick}
             primaryText={user.name}
             secondaryText={user.email}
             insetChildren={!adminIcon}

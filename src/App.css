@@ -1,11 +1,17 @@
 
 body {
     background: url("background-image.jpg") no-repeat fixed;
+    font-family: "HelveticaNeue-Bold", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .page {
     text-align: center;
     margin-top: 5%;
+}
+
+.loading-indicator {
+    display: block;
+    margin: 0 auto;
 }
 
 .search-button {
@@ -44,6 +50,10 @@ body {
 
 .card-button {
     margin: 5px;
+}
+
+.reference {
+    padding: 5px 0;
 }
 
 .reference a {

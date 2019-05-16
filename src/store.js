@@ -15,10 +15,7 @@ const initialState = {
     },
     user: {},
     admin: {
-        limits: {
-            google: 0,
-            yandex: 0,
-        },
+        limits: {},
         users: [],
         searches: [],
         links: {
@@ -32,16 +29,7 @@ const initialState = {
     },
     options: {
         neuralNetwork: false,
-        searchEngine: {
-            google: true,
-            yandex: true,
-            cache: true,
-        },
-        textRules: {
-            parenthesis: true,
-            review: true,
-            numbers: true,
-        },
+        matcher: "CONTAINS",
         rating: {
             minRating: 3,
             ratingDialogOpen: false,
